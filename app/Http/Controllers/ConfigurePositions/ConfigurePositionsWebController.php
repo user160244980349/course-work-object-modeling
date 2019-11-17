@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\ConfigureVariants;
+namespace App\Http\Controllers\ConfigurePositions;
 
 use App\Http\Controllers\Controller;
 use App\Models\Entities\Product;
