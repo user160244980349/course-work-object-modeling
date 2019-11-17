@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-md-8 offset-2">
+            <div class="col-md-6 offset-3">
 
                 <!-- FIRST CARD FOR MAIN PARAMETERS -->
                 <div class="card mb-3">
@@ -15,7 +15,7 @@
                                 <b>Просмотр параметра конфигурирования</b>
                             </div>
 
-                            <div class="col-md-3 d-flex justify-content-end">
+                            <div class="col d-flex justify-content-end">
                                 <div class="btn-group-sm">
                                     <a class="btn btn-primary" href="{{ route('web.products.read', ['id' => $product->id]) }}">Назад</a>
                                     <a class="btn btn-primary" href="{{ route('home') }}">На главную</a>
