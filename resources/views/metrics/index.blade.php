@@ -13,7 +13,7 @@
                                 <b>Список норм расчета</b>
                             </div>
 
-                            <div class="col d-flex flex-row-reverse">
+                            <div class="col d-flex justify-content-end">
                                 <div class="btn-group-sm">
                                     <a class="btn btn-success" href="{{ route('web.metrics.create') }}">Создать
                                         новую</a>
@@ -26,7 +26,9 @@
                             <div class="col">
 
                                 @if($metrics->isEmpty())
-                                    <i>Список пуст</i>
+                                    <div class="d-flex justify-content-center">
+                                        <i>Список пуст</i>
+                                    </div>
                                 @else
                                     <table class="table table-sm mb-0">
                                         <thead>
@@ -34,7 +36,7 @@
                                                 <th scope="col">#</th>
                                                 <th scope="col">Сокращение</th>
                                                 <th scope="col">Полное название</th>
-                                                <th scope="col">Действия</th>
+                                                <th scope="col"><div class="d-flex justify-content-end">Действия</div></th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -43,7 +45,7 @@
                                                     <th scope="row">{{ $loop->iteration }}</th>
                                                     <td>{{ $metric->name }}</td>
                                                     <td>{{ $metric->extended_name }}</td>
-                                                    <td><div class="col d-flex flex-row-reverse"><a class="btn btn-sm btn-outline-primary"
+                                                    <td><div class="col d-flex justify-content-end"><a class="btn btn-sm btn-outline-primary"
                                                                 href="{{ route('web.metrics.read', ['id' => $metric->id]) }}">Подробнее</a></div>
                                                     </td>
                                                 </tr>

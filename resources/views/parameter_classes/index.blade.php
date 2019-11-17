@@ -15,7 +15,7 @@
                                     <b>Список классификаторов параметров</b>
                                 </div>
 
-                                <div class="col d-flex flex-row-reverse">
+                                <div class="col d-flex justify-content-end">
                                     <div class="btn-group-sm">
                                         <a class="btn btn-success" href="{{ route('web.parameter_classes.create') }}">Создать
                                             новый</a>
@@ -31,14 +31,16 @@
                             <div class="col">
 
                                 @if($classes->isEmpty())
-                                    <i>Список пуст</i>
+                                    <div class="d-flex justify-content-center">
+                                        <i>Список пуст</i>
+                                    </div>
                                 @else
                                     <table class="table table-sm mb-0">
                                         <thead>
                                             <tr>
                                                 <th scope="col">#</th>
                                                 <th scope="col">Название</th>
-                                                <th scope="col"><div class="d-flex flex-row-reverse">Действия</div></th>
+                                                <th scope="col"><div class="d-flex justify-content-end">Действия</div></th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -47,7 +49,7 @@
                                                     <th scope="row">{{ $loop->iteration }}</th>
                                                     <td>{{ $class->name }}</td>
                                                     <td>
-                                                        <div class="d-flex flex-row-reverse">
+                                                        <div class="d-flex justify-content-end">
                                                             <a class="btn btn-sm btn-outline-primary" href="{{ route('web.parameter_classes.read', ['id' => $class->id]) }}">Подробнее</a>
                                                         </div>
                                                     </td>

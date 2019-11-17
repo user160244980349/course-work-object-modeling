@@ -2,66 +2,81 @@
 
 @section('content')
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
+        <div class="row">
+            <div class="col-md-6 offset-3">
 
-                <form role="form" method="post" action="{{ route('products.configure.create', ['prod_id' => $product->id]) }}">
-                    @csrf
+                <div class="card">
+                    <div class="card-body">
 
-                    <div class="card">
+                        <div class="row card-title">
 
-                        <div class="card-header">
-                            <div class="row align-items-center">
-                                <div class="col">
-                                    <font size="4">Создание параметра конфигурирования</font>
-                                </div>
-                                <div class="col-md-3 d-flex flex-row-reverse">
-                                    <div class="btn-group">
-                                        <a class="btn btn-primary" href="{{ route('web.products.read', ['id' => $product->id]) }}">Назад</a>
-                                        <a class="btn btn-primary" href="{{ route('home') }}">На главную</a>
-                                    </div>
+                            <div class="col">
+                                <b>Создание параметра конфигурирования</b>
+                            </div>
+
+                            <div class="col d-flex justify-content-end">
+                                <div class="btn-group-sm">
+                                    <a class="btn btn-primary" href="{{ route('web.products.read', ['id' => $product->id]) }}">Назад</a>
+                                    <a class="btn btn-primary" href="{{ route('home') }}">На главную</a>
                                 </div>
                             </div>
+
                         </div>
 
-                        <div class="card-body">
-                            <div class="row align-items-center">
+                        <form role="form" method="post" action="{{ route('products.configure.create', ['prod_id' => $product->id]) }}">
+                            @csrf
+
+                            <div class="row">
                                 <div class="col">
 
                                     <div class="form-group">
-                                        <div class="row align-items-center">
-                                            <div class="col-md-4">
+
+                                        <div class="row">
+                                            <div class="col">
                                                 <label for="class" class="control-label">Классификатор параметра</label>
                                             </div>
+                                        </div>
+
+                                        <div class="row">
                                             <div class="col">
-                                                <select id="class" type="select" class="form-control" name="class"
+                                                <select id="class" type="select" class="form-control form-control-sm" name="class"
                                                         disabled>
-                                                        <option
-                                                            value="{{ $class->id }}">{{ $class->name }}</option>
-                                                    </select>
+                                                    <option
+                                                        value="{{ $class->id }}">{{ $class->name }}</option>
+                                                </select>
                                             </div>
                                         </div>
+
                                     </div>
 
                                     <div class="form-group">
-                                        <div class="row align-items-center">
-                                            <div class="col-md-4">
+
+                                        <div class="row">
+                                            <div class="col">
                                                 <label for="name" class="control-label">Название параметра</label>
                                             </div>
+                                        </div>
+
+                                        <div class="row">
                                             <div class="col">
-                                                <input id="name" type="text" class="form-control" name="name" required
+                                                <input id="name" type="text" class="form-control form-control-sm" name="name" required
                                                        autofocus/>
                                             </div>
                                         </div>
+
                                     </div>
 
-                                    <div class="form-group mb-0">
-                                        <div class="row align-items-center">
-                                            <div class="col-md-4">
+                                    <div class="form-group">
+
+                                        <div class="row">
+                                            <div class="col">
                                                 <label for="metric" class="control-label">Норма расчета</label>
                                             </div>
+                                        </div>
+
+                                        <div class="row">
                                             <div class="col">
-                                                <select id="metric" type="select" class="form-control" name="metric"
+                                                <select id="metric" type="select" class="form-control form-control-sm" name="metric"
                                                         required>
                                                     @foreach ($metrics as $metric)
                                                         <option
@@ -70,23 +85,22 @@
                                                 </select>
                                             </div>
                                         </div>
+
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col">
+                                            <input type="submit" class="btn btn-sm btn-primary" value="Создать"/>
+                                        </div>
                                     </div>
 
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="card-footer">
-                            <div class="row align-items-center">
-                                <div class="col">
-                                    <input type="submit" class="btn btn-primary" value="Создать"/>
-                                </div>
-                            </div>
-                        </div>
+                        </form>
 
                     </div>
-
-                </form>
+                </div>
 
             </div>
         </div>

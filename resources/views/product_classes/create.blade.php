@@ -13,7 +13,7 @@
                                     <b>Новый классификатор изделий</b>
                                 </div>
 
-                                <div class="col d-flex flex-row-reverse">
+                                <div class="col d-flex justify-content-end">
                                     <div class="btn-group-sm">
                                         <a class="btn btn-primary"
                                            href="{{ route('web.product_classes.index') }}">Назад</a>

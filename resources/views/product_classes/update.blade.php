@@ -14,7 +14,7 @@
                                     <b>Редактирование классификатора изделий</b>
                                 </div>
 
-                                <div class="col d-flex flex-row-reverse">
+                                <div class="col d-flex justify-content-end">
                                     <div class="btn-group-sm">
                                         <a class="btn btn-primary"
                                            href="{{ route('web.product_classes.read', ['id' => $class->id]) }}">Отменить
@@ -35,7 +35,7 @@
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col">
-                                                    <label for="class" class="control-label">Название классификатора</label>
+                                                    <label for="name" class="control-label">Название классификатора</label>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -50,14 +50,14 @@
                                             <div class="row">
                                                 <div class="col">
                                                     <input id="terminal_in" type="checkbox" class="form-check-input" name="terminal_in"
-                                                           @if($class->terminal_in) checked @endif  />
+                                                       @if($class->terminal_in) checked @endif  />
                                                     <label for="terminal_in" class="form-check-label">Терминальный по наполнению</label>
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col">
                                                     <input id="terminal_out" type="checkbox" class="form-check-input" name="terminal_out"
-                                                           @if($class->terminal_out) checked @endif  />
+                                                       @if($class->terminal_out) checked @endif  />
                                                     <label for="terminal_out" class="form-check-label">Терминальный по включению</label>
                                                 </div>
                                             </div>

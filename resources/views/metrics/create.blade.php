@@ -14,7 +14,7 @@
                                 <b>Новая норма расчета</b>
                             </div>
 
-                            <div class="col d-flex flex-row-reverse">
+                            <div class="col d-flex justify-content-end">
                                 <div class="btn-group-sm">
                                     <a class="btn btn-primary"
                                        href="{{ route('web.metrics.index') }}">К списку</a>
