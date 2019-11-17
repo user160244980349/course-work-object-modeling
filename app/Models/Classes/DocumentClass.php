@@ -7,8 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class DocumentClass extends Model
 {
-
-    protected $fillable = ['name'];
+    protected $guarded = ['id'];
 
     public function documents()
     {

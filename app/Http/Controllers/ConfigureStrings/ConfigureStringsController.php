@@ -26,7 +26,7 @@ class ConfigureStringsController extends Controller
         $value->parameter()->associate($parameter);
         $value->save();
 
-        return redirect()->route('web.products.configure.read', ['prod_id' => $prod_id, 'id' => $parameter->id]);
+        return redirect()->route('web.products.configure.parameters.read', ['prod_id' => $prod_id, 'id' => $parameter->id]);
     }
 
     public function delete($prod_id, $conf_id, $id)
@@ -37,7 +37,7 @@ class ConfigureStringsController extends Controller
             ]);
         ConfigureString::find($id)->delete();
 
-        return redirect()->route('web.products.configure.read', ['prod_id' => $prod_id, 'conf_id' => $conf_id]);
+        return redirect()->route('web.products.configure.parameters.read', ['prod_id' => $prod_id, 'conf_id' => $conf_id]);
     }
 
 }

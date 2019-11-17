@@ -6,10 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class StringValue extends Model
 {
-
-    protected $fillable = [
-        'name', 'value'
-    ];
+    protected $guarded = ['id'];
 
     public function valuable()
     {

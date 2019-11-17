@@ -5,7 +5,6 @@
         <div class="row">
             <div class="col-md-8 offset-2">
 
-
                 <!-- FIRST CARD FOR MAIN PARAMETERS -->
                 <div class="card mb-3">
                     <div class="card-body">

@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -12,19 +12,19 @@ class PredicateInstance extends Model
         return $this->belongsTo('App\Models\Entities\Product');
     }
 
-    public function actual_parameters()
+    public function position()
     {
-        return $this->hasMany('App\Models\Entities\ActualParameter');
+        return $this->belongsTo('App\Models\Entities\ProductPosition', 'product_position_id');
+    }
+
+    public function formal_parameters()
+    {
+        return $this->hasMany('App\Models\Entities\FormalParameter', 'predicate_instance_id');
     }
 
     public function predicate()
     {
-        return $this->hasMany('App\Models\Entities\ActualParameter');
-    }
-
-    public function positions()
-    {
-        return $this->belongsToMany('App\Models\Entities\ProductPosition', 'predicate_product_position', 'predicate_id', 'product_position_id');
+        return $this->belongsTo('App\Models\Entities\Predicate');
     }
 
 }

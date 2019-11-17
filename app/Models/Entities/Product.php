@@ -6,10 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-
-    protected $fillable = [
-        'name'
-    ];
+    protected $guarded = ['id'];
 
     public function product_class()
     {
@@ -51,14 +48,14 @@ class Product extends Model
         return $this->hasMany('App\Models\Entities\ProductPosition')->with('content_recurse');
     }
 
-    public function predicates()
-    {
-        return $this->hasMany('App\Models\Entities\Predicate');
-    }
-
     public function inclusions()
     {
         return $this->hasMany('App\Models\Entities\ProductPosition','position_content_id');
+    }
+
+    public function predicate_instances()
+    {
+        return $this->hasMany('App\Models\Entities\PredicateInstance');
     }
 
 }

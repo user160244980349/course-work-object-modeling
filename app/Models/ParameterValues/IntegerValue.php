@@ -6,10 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class IntegerValue extends Model
 {
-
-    protected $fillable = [
-        'value'
-    ];
+    protected $guarded = ['id'];
 
     public function valuable()
     {

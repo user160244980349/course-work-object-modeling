@@ -7,10 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Document extends Model
 {
-
-    protected $fillable = [
-        'name', 'document_class_id', 'product_id',
-    ];
+    protected $guarded = ['id'];
 
     public function document_class()
     {

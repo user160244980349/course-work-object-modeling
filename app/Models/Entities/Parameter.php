@@ -6,10 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Parameter extends Model
 {
-
-    protected $fillable = [
-        'name', 'parameter_class_id', 'parametrized_id', 'parametrized_type', 'valuable_id', 'valuable_type'
-    ];
+    protected $guarded = ['id'];
 
     public function parameter_class()
     {

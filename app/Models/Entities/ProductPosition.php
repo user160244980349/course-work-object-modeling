@@ -6,10 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ProductPosition extends Model
 {
-
-    protected $fillable = [
-        'name', 'product_id', 'position_content_id', 'predicate_id'
-    ];
+    protected $guarded = ['id'];
 
     public function product()
     {
@@ -31,9 +28,9 @@ class ProductPosition extends Model
         return $this->morphTo();
     }
 
-    public function predicates()
+    public function predicate_instances()
     {
-        return $this->belongsToMany('App\Models\Entities\Predicate', 'predicate_product_position', 'product_position_id', 'predicate_id');
+        return $this->hasMany('App\Models\Entities\PredicateInstance');
     }
 
 }

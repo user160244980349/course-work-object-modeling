@@ -17,7 +17,6 @@ class CreatePredicatesTable extends Migration
 
             // Indices
             $table->bigIncrements('id');
-            $table->bigInteger('product_id');
 
             // Values
             $table->string('name');

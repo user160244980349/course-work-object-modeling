@@ -31,7 +31,7 @@ class ConfigureParametersController extends Controller
 
         $parameter->save();
 
-        return redirect()->route('web.products.configure.read', ['prod_id' => $prod_id, 'id' => $parameter->id]);
+        return redirect()->route('web.products.configure.parameters.read', ['prod_id' => $prod_id, 'id' => $parameter->id]);
     }
 
     public function delete($prod_id, $id)

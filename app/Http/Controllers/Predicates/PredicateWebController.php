@@ -10,33 +10,22 @@ use Illuminate\Support\Facades\Session;
 class PredicateWebController extends Controller
 {
 
-    public function step1($prod_id)
+    public function index()
     {
-        return view('predicates/step1')
-            ->with(['product' => Product::find($prod_id)]);
+        return view('predicates/index')
+            ->with([
+                'predicates' => Predicate::all(),
+            ]);
     }
 
-    public function step2($prod_id)
+    public function create()
     {
-        return view('predicates/step2')
-            ->with(['product' => Product::find($prod_id)])
-            ->with(['predicate' => Session::get('predicate')])
-            ->with(['parameters' => Session::get('parameters')]);
+        return view('predicates/create');
     }
 
-    public function step3($prod_id)
+    public function read($id)
     {
-        return view('predicates/step3')
-            ->with(['product' => Product::find($prod_id)])
-            ->with(['predicate' => Session::get('predicate')])
-            ->with(['parameters' => Session::get('parameters')]);
-    }
-
-    public function read($prod_id, $id)
-    {
-        return view('predicates/read')
-            ->with(['product' => Product::find($prod_id)])
-            ->with(['predicate' => Predicate::find($id)]);
+        return view('predicates/read', ['predicate' => Predicate::find($id)]);
     }
 
 }
