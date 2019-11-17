@@ -2,90 +2,87 @@
 
 @section('content')
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
+        <div class="row">
+            <div class="col-md-8 offset-2">
 
                 <div class="card">
+                    <div class="card-body">
 
-                    <div class="card-header">
-                        <div class="row align-items-center">
+                        <div class="row card-title">
+
                             <div class="col">
-                                <font size="4">Назначение предиткатов на позиции</font>
+                                <b>Назначение предиткатов на позиции</b>
                             </div>
-                            <div class="col-md-3 d-flex flex-row-reverse">
-                                <div class="btn-group">
+
+                            <div class="col d-flex justify-content-end">
+                                <div class="btn-group-sm">
                                     <a class="btn btn-primary" href="{{ route('web.products.read', ['id' => $product->id]) }}">Назад</a>
                                     <a class="btn btn-primary" href="{{ route('home') }}">На главную</a>
                                 </div>
                             </div>
-                        </div>
-                    </div>
 
-                    <div class="card-body">
-                        <div class="row align-items-center">
-                            <div class="col d-flex justify-content-center">
+                        </div>
+
+                        <div class="row">
+                            <div class="col">
 
                                 @if($product->predicates->isEmpty())
-                                    <i>Список предикатов пуст</i>
+                                    <div class="d-flex justify-content-center">
+                                        <i>Список пуст</i>
+                                    </div>
                                 @else
-                                    <table class="table mb-0">
+                                    <table class="table table-sm mb-0">
                                         <tbody>
-                                        <tr>
-                                            <th class="col-md-1" scope="row" colspan="2">Изделие</th>
-                                            <th class="col-md-1" scope="row">{{ $product->name }}</th>
-                                        </tr>
-                                        @foreach ($levels as $level)
-                                            @break($loop->last)
                                             <tr>
-                                                <th class="col-md-1" scope="row" colspan="4">Уровень {{ $loop->iteration }}</th>
+                                                <th scope="row" colspan="2">Изделие</th>
+                                                <th scope="row">{{ $product->name }}</th>
                                             </tr>
-                                            <tr>
-                                                <th scope="col">#</th>
-                                                <th scope="col">Название</th>
-                                                <th scope="col">Предикат</th>
-                                            </tr>
-                                            @foreach($level as $product_in_pos)
-                                                @foreach($product_in_pos->positions as $content_position)
-                                                    <tr>
-                                                        <th class="col-md-1" scope="row">{{ $loop->iteration }}</th>
-                                                        <td class="col-md-5"><a href="{{ route('web.products.read', ['id' => $content_position->content->id]) }}">{{ $content_position->content->name }}</a></td>
-                                                        @if($content_position->predicates()->where('product_id', '=', $product->id)->exists())
-                                                            <td class="col">
-                                                                <div class="row align-items-center">
-                                                                    <div class="col">
-                                                                        <select class="form-control" disabled>
+                                            @foreach ($levels as $level)
+                                                @break($loop->last)
+                                                <tr>
+                                                    <th scope="row" colspan="4">Уровень {{ $loop->iteration }}</th>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="col">#</th>
+                                                    <th scope="col">Название</th>
+                                                    <th scope="col"><div class="d-flex justify-content-end">Предикат</div></th>
+                                                </tr>
+                                                @foreach($level as $product_in_pos)
+                                                    @foreach($product_in_pos->positions as $content_position)
+                                                        <tr>
+                                                            <th scope="row">{{ $loop->iteration }}</th>
+                                                            <td>
+                                                                <a href="{{ route('web.products.read', ['id' => $content_position->content->id]) }}">{{ $content_position->content->name }}</a>
+                                                            </td>
+                                                            @if($content_position->predicates()->where('product_id', '=', $product->id)->exists())
+                                                                <td>
+                                                                    <div class="d-flex justify-content-end">
+                                                                        <select class="form-control form-control-sm" disabled>
                                                                             <option value="">{{ $content_position->predicates[0]->expression }}</option>
                                                                         </select>
-                                                                    </div>
-                                                                    <div class="col-md-5">
                                                                         <form action="{{ route('products.configure.variants.delete', ['prod_id' => $product->id, 'pos_id' => $content_position->id, 'pred_id' => $content_position->predicates[0]->id]) }}" method="post">
                                                                             @csrf
                                                                             @method('delete')
-                                                                            <input type="submit" class="btn btn-danger form-control" value="Отменить"/>
+                                                                            <input type="submit" class="btn btn-sm btn-danger" value="Отменить"/>
                                                                         </form>
                                                                     </div>
-                                                                </div>
-                                                            </td>
-                                                        @else
-                                                            <td class="col">
-                                                                <form action="{{ route('products.configure.variants.create', ['prod_id' => $product->id, 'pos_id' => $content_position->id]) }}" method="post">
-                                                                    @csrf
-                                                                    <div class="row align-items-center">
-                                                                        <div class="col">
-                                                                            <select class="form-control" name="predicate">
+                                                                </td>
+                                                            @else
+                                                                <td>
+                                                                    <form action="{{ route('products.configure.variants.create', ['prod_id' => $product->id, 'pos_id' => $content_position->id]) }}" method="post">
+                                                                        @csrf
+                                                                        <div class="d-flex justify-content-end">
+                                                                            <select class="form-control form-control-sm mr-2" name="predicate">
                                                                                 @foreach($product->predicates as $predicate)
                                                                                     <option value="{{ $predicate->id }}">{{ $predicate->expression }}</option>
                                                                                 @endforeach
                                                                             </select>
+                                                                            <input type="submit" class="btn btn-sm btn-success" value="Назначить"/>
                                                                         </div>
-                                                                        <div class="col-md-5">
-                                                                            <input type="submit" class="btn btn-success form-control" value="Назначить"/>
-                                                                        </div>
-                                                                    </div>
-                                                                </form>
-                                                            </td>
-                                                        @endif
-                                                    </tr>
+                                                                    </form>
+                                                                </td>
+                                                            @endif
+                                                        </tr>
                                                     @endforeach
                                                 @endforeach
                                             @endforeach

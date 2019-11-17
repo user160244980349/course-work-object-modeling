@@ -2,59 +2,64 @@
 
 @section('content')
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
+        <div class="row">
+            <div class="col-md-6 offset-3">
 
-                <form role="form" method="post" action="">
-                    @csrf
+                <div class="card">
+                    <div class="card-body">
 
-                    <div class="card">
+                        <div class="row card-title">
 
-                        <div class="card-header">
-                            <div class="row align-items-center">
-                                <div class="col">
-                                    <font size="4">Новое значение параметра конфигурирования</font>
-                                </div>
-                                <div class="col-md-3 d-flex flex-row-reverse">
-                                    <div class="btn-group">
-                                        <a class="btn btn-primary" href="{{ route('web.products.configure.read', ['prod_id' => $product->id, 'conf_id' => $parameter->id]) }}">Назад</a>
-                                        <a class="btn btn-primary" href="{{ route('home') }}">На главную</a>
-                                    </div>
+                            <div class="col">
+                                <b>Новое значение параметра конфигурирования</b>
+                            </div>
+
+                            <div class="col d-flex justify-content-end">
+                                <div class="btn-group-sm">
+                                    <a class="btn btn-primary" href="{{ route('web.products.configure.read', ['prod_id' => $product->id, 'conf_id' => $parameter->id]) }}">Назад</a>
+                                    <a class="btn btn-primary" href="{{ route('home') }}">На главную</a>
                                 </div>
                             </div>
+
                         </div>
 
-                        <div class="card-body">
-                            <div class="row align-items-center">
+                        <form role="form" method="post" action="">
+                            @csrf
+
+                            <div class="row">
                                 <div class="col">
 
-                                    <div class="form-group mb-0">
-                                        <div class="row align-items-center">
-                                            <div class="col-md-4">
+                                    <div class="form-group">
+
+                                        <div class="row">
+                                            <div class="col">
                                                 <label for="value" class="control-label">Значение параметра</label>
                                             </div>
+                                        </div>
+
+                                        <div class="row">
                                             <div class="col">
-                                                <input id="value" type="text" class="form-control" name="value" required
+                                                <input id="value" type="text" class="form-control form-control-sm" name="value" required
                                                        autofocus/>
                                             </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col">
+                                            <input type="submit" class="btn btn-sm btn-primary" value="Создать"/>
                                         </div>
                                     </div>
 
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="card-footer">
-                            <div class="row align-items-center">
-                                <div class="col">
-                                    <input type="submit" class="btn btn-primary" value="Создать"/>
-                                </div>
-                            </div>
-                        </div>
+                        </form>
 
                     </div>
+                </div>
 
-                </form>
 
             </div>
         </div>

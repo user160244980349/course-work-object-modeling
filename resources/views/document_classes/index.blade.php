@@ -2,58 +2,63 @@
 
 @section('content')
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
+        <div class="row">
+            <div class="col-md-8 offset-2">
 
                 <div class="card">
+                    <div class="card-body">
 
-                    <div class="card-header">
-                        <div class="row align-items-center">
+                        <div class="row card-title">
+
                             <div class="col">
-                                <font size="4">Список классификаторов документов</font>
+                                <b>Список классификаторов документов</b>
                             </div>
+
                             <div class="col d-flex flex-row-reverse">
-                                <div class="btn-group">
+
+                                <div class="btn-group-sm">
                                     <a class="btn btn-success" href="{{ route('web.document_classes.create') }}">Создать
                                         новый</a>
                                     <a class="btn btn-primary" href="{{ route('home') }}">На главную</a>
                                 </div>
                             </div>
-                        </div>
-                    </div>
 
-                    <div class="card-body">
-                        <div class="row align-items-center">
-                            <div class="col d-flex justify-content-center">
+                        </div>
+
+                        <div class="row">
+                            <div class="col">
+
                                 @if($classes->isEmpty())
-                                    <i>Список пуст</i>
+                                    <div class="d-flex justify-content-center">
+                                        <i>Список пуст</i>
+                                    </div>
                                 @else
-                                <table class="table mb-0">
-                                    <thead>
-                                    <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">Название</th>
-                                        <th scope="col">Действия</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    @foreach ($classes as $class)
-                                        <tr>
-                                            <th class="col-md-1" scope="row">{{ $loop->iteration }}</th>
-                                            <td class="col-md-10">{{ $class->name }}</td>
-                                            <td class="col-md-1"><a class="btn btn-primary"
-                                                                    href="{{ route('web.document_classes.read', ['id' => $class->id]) }}">Подробнее</a>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                    </tbody>
-                                </table>
+                                    <table class="table table-sm mb-0">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">Название</th>
+                                                <th scope="col" class="d-flex justify-content-end">Действия</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($classes as $class)
+                                                <tr>
+                                                    <th scope="row">{{ $loop->iteration }}</th>
+                                                    <td>{{ $class->name }}</td>
+                                                    <td class="d-flex justify-content-end"><a class="btn btn-sm btn-outline-primary"
+                                                                            href="{{ route('web.document_classes.read', ['id' => $class->id]) }}">Подробнее</a>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
                                 @endif
 
                             </div>
                         </div>
-                    </div>
 
+                    </div>
                 </div>
 
             </div>
