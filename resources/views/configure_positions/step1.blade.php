@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-md-6 offset-3">
+            <div class="col-md-8 offset-2">
 
                 <div class="card">
                     <div class="card-body">
@@ -11,19 +11,18 @@
                         <div class="row card-title">
 
                             <div class="col">
-                                <b>Новое значение параметра конфигурирования</b>
+                                <b>Назначение предиката конфигурирования</b>
                             </div>
 
-                            <div class="col d-flex justify-content-end">
+                            <div class="col-md-3 d-flex justify-content-end">
                                 <div class="btn-group-sm">
-                                    <a class="btn btn-primary" href="{{ route('web.products.configure.parameters.read', ['prod_id' => $product->id, 'conf_id' => $parameter->id]) }}">Назад</a>
                                     <a class="btn btn-primary" href="{{ route('home') }}">На главную</a>
                                 </div>
                             </div>
 
                         </div>
 
-                        <form role="form" method="post" action="">
+                        <form role="form" method="post" action="{{ route('products.configure.positions.step1', ['prod_id' => $product->id, 'id' => $position->id]) }} ">
                             @csrf
 
                             <div class="row">
@@ -33,14 +32,17 @@
 
                                         <div class="row">
                                             <div class="col">
-                                                <label for="value" class="control-label">Значение параметра</label>
+                                                <label for="predicate" class="control-label">Наименование предиката</label>
                                             </div>
                                         </div>
 
                                         <div class="row">
                                             <div class="col">
-                                                <input id="value" type="text" class="form-control form-control-sm" name="value" required
-                                                       autofocus/>
+                                                <select id="predicate" class="text form-control form-control-sm" name="predicate" required>
+                                                    @foreach($predicates as $predicate)
+                                                        <option value="{{ $predicate->id }}">{{ $predicate->name }}, {{ $predicate->expression }}</option>
+                                                    @endforeach
+                                                </select>
                                             </div>
                                         </div>
 
@@ -48,7 +50,7 @@
 
                                     <div class="row">
                                         <div class="col">
-                                            <input type="submit" class="btn btn-sm btn-primary" value="Создать"/>
+                                            <input type="submit" class="btn btn-sm btn-primary" value="Далее"/>
                                         </div>
                                     </div>
 
@@ -59,7 +61,6 @@
 
                     </div>
                 </div>
-
 
             </div>
         </div>

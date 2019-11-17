@@ -3,10 +3,14 @@
 namespace App\Http\Controllers\ConfigurePositions;
 
 use App\Http\Controllers\Controller;
+use App\Models\Entities\Predicate;
+use App\Models\Entities\PredicateInstance;
 use App\Models\Entities\Product;
+use App\Models\Entities\ProductPosition;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\Session;
 
-class ConfigureVariantsWebController extends Controller
+class ConfigurePositionsWebController extends Controller
 {
 
     public function index($prod_id)
@@ -17,12 +21,14 @@ class ConfigureVariantsWebController extends Controller
         $level = -1;
         $content_list = new Collection;
         $this->recurse_leveling($content_list, $level, $subtree);
-//        $content_list->shift();
         $levels = $content_list->groupBy('level');
-//        dd($levels);
-        return view('configure_variants/index')
-            ->with(['product' => $product])
-            ->with(['levels' => $levels]);
+
+        return view('configure_positions/index')
+            ->with([
+                'predicates' => Predicate::all(),
+                'product' => $product,
+                'levels' => $levels,
+            ]);
     }
 
     private function recurse_leveling(&$content_list, &$level, &$subtree) {
@@ -36,6 +42,50 @@ class ConfigureVariantsWebController extends Controller
 
         $level--;
         return;
+    }
+
+    public function read($prod_id, $pos_id)
+    {
+        $predicate_instance = PredicateInstance::where('product_id', '=', $prod_id)->where('product_position_id', '=', $pos_id)->with('predicate')->first();
+
+        return view('configure_positions/read')
+            ->with([
+                'predicate_instance' => $predicate_instance,
+                'product' => Product::find($prod_id),
+                'position' => ProductPosition::find($pos_id),
+            ]);
+    }
+
+    public function step1($prod_id, $pos_id)
+    {
+        return view('configure_positions/step1')
+            ->with([
+                'predicates' => Predicate::all(),
+                'product' => Product::find($prod_id),
+                'position' => ProductPosition::find($pos_id),
+            ]);
+    }
+
+    public function step2($prod_id, $pos_id)
+    {
+        return view('configure_positions/step2')
+            ->with([
+                'predicate' => Session::get('predicate'),
+                'parameters' => Session::get('parameter_models'),
+                'product' => Product::find($prod_id),
+                'position' => ProductPosition::find($pos_id),
+            ]);
+    }
+
+    public function step3($prod_id, $pos_id)
+    {
+        return view('configure_positions/step3')
+            ->with([
+                'predicate' => Session::get('predicate'),
+                'parameters' => Session::get('parameter_models'),
+                'product' => Product::find($prod_id),
+                'position' => ProductPosition::find($pos_id),
+            ]);
     }
 
 }

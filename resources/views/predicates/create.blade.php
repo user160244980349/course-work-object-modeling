@@ -17,14 +17,14 @@
                             <div class="col d-flex justify-content-end">
                                 <div class="btn-group-sm">
                                     <a class="btn btn-primary"
-                                       href="">Назад</a>
+                                       href="{{ route('web.predicates.index') }}">Назад</a>
                                     <a class="btn btn-primary" href="{{ route('home') }}">На главную</a>
                                 </div>
                             </div>
 
                         </div>
 
-                        <form role="form" method="post" action="{{ route('products.predicates.step1', ['prod_id' => $product->id]) }}">
+                        <form role="form" method="post" action="">
                             @csrf
 
                             <div class="row">

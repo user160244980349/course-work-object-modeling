@@ -67,7 +67,10 @@
                                     1. <a href="{{ route('web.products.index') }}">Управление изделиями</a>
                                 </div>
                                 <div class="">
-                                    2. <a href="">Варианты конфигурирования</a>
+                                    2. <a href="{{ route('web.predicates.index') }}">Предикаты конфигурирования</a>
+                                </div>
+                                <div class="">
+                                    3. <a href="">Варианты конфигурирования</a>
                                 </div>
                             </div>
                         </div>

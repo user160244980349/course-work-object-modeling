@@ -6,10 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ConfigureParameter extends Model
 {
-
-    protected $fillable = [
-        'name',
-    ];
+    protected $guarded = ['id'];
 
     public function parameter_class()
     {
@@ -26,14 +23,14 @@ class ConfigureParameter extends Model
         return $this->belongsTo('App\Models\Entities\Product');
     }
 
-    public function formal_parameters()
-    {
-        return $this->hasMany('App\Models\Entities\FormalParameter', 'actual_parameter_id');
-    }
-
     public function metric()
     {
         return $this->belongsTo('App\Models\Entities\Metric');
+    }
+
+    public function formal_parameters()
+    {
+        return $this->hasMany('App\Models\Entities\FormalParameter', 'configure_parameter_id');
     }
 
 }

@@ -14,7 +14,14 @@ class CreatePredicateInstancesTable extends Migration
     public function up()
     {
         Schema::create('predicate_instances', function (Blueprint $table) {
+
+            // Indices
             $table->bigIncrements('id');
+            $table->bigInteger('product_id');
+            $table->bigInteger('product_position_id');
+            $table->bigInteger('predicate_id');
+
+            // Values
             $table->timestamps();
         });
     }

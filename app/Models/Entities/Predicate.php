@@ -7,25 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Predicate extends Model
 {
-
-    protected $fillable = [
-        'name', 'expression',
-    ];
-
-    public function position ()
-    {
-        return $this->belongsTo('App\Models\Entities\ProductPosition');
-    }
-
-    public function product ()
-    {
-        return $this->belongsTo('App\Models\Entities\ProductPosition');
-    }
-
-    public function formal_parameters()
-    {
-        return $this->hasMany('App\Models\Entities\FormalParameter');
-    }
+    protected $guarded = ['id'];
 
     public function instances()
     {

@@ -17,9 +17,9 @@ class CreateFormalParametersTable extends Migration
 
             // Indices
             $table->bigIncrements('id');
-            $table->bigInteger('predicate_id');
-            $table->bigInteger('actual_parameter_id');
-            $table->bigInteger('actual_value_id');
+            $table->bigInteger('predicate_instance_id');
+            $table->bigInteger('configure_parameter_id');
+            $table->bigInteger('configure_string_id');
 
             // Values
             $table->string('name');

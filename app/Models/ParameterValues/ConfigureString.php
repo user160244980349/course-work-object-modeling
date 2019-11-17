@@ -6,13 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class ConfigureString extends Model
 {
-    protected $fillable = [
-        'value', 'configure_parameter_id'
-    ];
+    protected $guarded = ['id'];
 
     public function formal_parameters()
     {
-        return $this->hasMany('App\Models\Entities\FormalParameter', 'actual_value_id');
+        return $this->hasMany('App\Models\Entities\FormalParameter', 'configure_string_id');
     }
 
     public function parameter()

@@ -139,30 +139,15 @@ Route::group(['middleware' => 'auth'], function () {
 
         });
 
-        Route::group(['prefix' => '{prod_id}/predicates'], function () {
-
-            Route::get('step1', 'Predicates\PredicateWebController@step1')->name('web.products.predicates.step1');
-            Route::get('step2', 'Predicates\PredicateWebController@step2')->name('web.products.predicates.step2');
-            Route::get('step3', 'Predicates\PredicateWebController@step3')->name('web.products.predicates.step3');
-            Route::get('read/{id}', 'Predicates\PredicateWebController@read')->name('web.products.predicates.read');
-
-            Route::post('step1', 'Predicates\PredicateController@step1')->name('products.predicates.step1');
-            Route::post('step2', 'Predicates\PredicateController@step2')->name('products.predicates.step2');
-            Route::post('step3', 'Predicates\PredicateController@step3')->name('products.predicates.step3');
-
-            Route::delete('delete/{id}', 'Predicates\PredicateController@delete')->name('products.predicates.delete');
-
-        });
-
         Route::group(['prefix' => '{prod_id}/configure_parameters'], function () {
 
-            Route::get('create', 'ConfigureParameters\ConfigureParametersWebController@create')->name('web.products.configure.create');
-            Route::get('read/{id}', 'ConfigureParameters\ConfigureParametersWebController@read')->name('web.products.configure.read');
-            Route::get('update/{id}', 'ConfigureParameters\ConfigureParametersWebController@update')->name('web.products.configure.update');
+            Route::get('create', 'ConfigureParameters\ConfigureParametersWebController@create')->name('web.products.configure.parameters.create');
+            Route::get('read/{id}', 'ConfigureParameters\ConfigureParametersWebController@read')->name('web.products.configure.parameters.read');
+            Route::get('update/{id}', 'ConfigureParameters\ConfigureParametersWebController@update')->name('web.products.configure.parameters.update');
 
-            Route::post('create', 'ConfigureParameters\ConfigureParametersController@create')->name('products.configure.create');
-            Route::put('update/{id}', 'ConfigureParameters\ConfigureParametersController@update')->name('products.configure.update');
-            Route::delete('delete/{id}', 'ConfigureParameters\ConfigureParametersController@delete')->name('products.configure.delete');
+            Route::post('create', 'ConfigureParameters\ConfigureParametersController@create')->name('products.configure.parameters.create');
+            Route::put('update/{id}', 'ConfigureParameters\ConfigureParametersController@update')->name('products.configure.parameters.update');
+            Route::delete('delete/{id}', 'ConfigureParameters\ConfigureParametersController@delete')->name('products.configure.parameters.delete');
 
             Route::group(['prefix' => '{conf_id}/values'], function () {
 
@@ -175,14 +160,33 @@ Route::group(['middleware' => 'auth'], function () {
 
         });
 
-        Route::group(['prefix' => '{prod_id}/configure_variants'], function () {
+        Route::group(['prefix' => '{prod_id}/configure_positions'], function () {
 
-            Route::get('index', 'ConfigureVariants\ConfigureVariantsWebController@index')->name('web.products.configure.variants.index');
+            Route::get('index', 'ConfigurePositions\ConfigurePositionsWebController@index')->name('web.products.configure.positions.index');
+            Route::get('{id}/read', 'ConfigurePositions\ConfigurePositionsWebController@read')->name('web.products.configure.positions.read');
 
-            Route::post('{pos_id}/create', 'ConfigureVariants\ConfigureVariantsController@create')->name('products.configure.variants.create');
-            Route::delete('{pos_id}/delete/{pred_id}', 'ConfigureVariants\ConfigureVariantsController@delete')->name('products.configure.variants.delete');
+            Route::get('{id}/step1', 'ConfigurePositions\ConfigurePositionsWebController@step1')->name('web.products.configure.positions.step1');
+            Route::get('{id}/step2', 'ConfigurePositions\ConfigurePositionsWebController@step2')->name('web.products.configure.positions.step2');
+            Route::get('{id}/step3', 'ConfigurePositions\ConfigurePositionsWebController@step3')->name('web.products.configure.positions.step3');
+
+            Route::post('{id}/step1', 'ConfigurePositions\ConfigurePositionsController@step1')->name('products.configure.positions.step1');
+            Route::post('{id}/step2', 'ConfigurePositions\ConfigurePositionsController@step2')->name('products.configure.positions.step2');
+            Route::post('{id}/step3', 'ConfigurePositions\ConfigurePositionsController@step3')->name('products.configure.positions.step3');
+
+            Route::delete('{id}/delete', 'ConfigurePositions\ConfigurePositionsController@delete')->name('products.configure.positions.delete');
 
         });
+
+    });
+
+    Route::group(['prefix' => 'predicates'], function () {
+
+        Route::get('index', 'Predicates\PredicateWebController@index')->name('web.predicates.index');
+        Route::get('create', 'Predicates\PredicateWebController@create')->name('web.predicates.create');
+        Route::get('read/{id}', 'Predicates\PredicateWebController@read')->name('web.predicates.read');
+
+        Route::post('create', 'Predicates\PredicateController@create')->name('predicates.create');
+        Route::delete('delete/{id}', 'Predicates\PredicateController@delete')->name('predicates.delete');
 
     });
 

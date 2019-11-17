@@ -6,10 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ValueType extends Model
 {
-
-    protected $fillable = [
-        'name'
-    ];
+    protected $guarded = ['id'];
 
     public function parameters()
     {

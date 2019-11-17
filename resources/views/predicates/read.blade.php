@@ -16,6 +16,7 @@
 
                             <div class="col-md-3 d-flex justify-content-end">
                                 <div class="btn-group-sm">
+                                    <a class="btn btn-sm btn-primary" href="{{ route('web.predicates.index') }}">Назад</a>
                                     <a class="btn btn-primary" href="{{ route('home') }}">На главную</a>
                                 </div>
                             </div>
@@ -41,7 +42,7 @@
 
                                 </div>
 
-                                <div class="form-group">
+                                <div class="form-group mb-0">
 
                                     <div class="row">
                                         <div class="col">
@@ -56,43 +57,6 @@
                                         </div>
                                     </div>
 
-                                </div>
-
-                                <div class="form-group">
-                                    <div class="row mb-1">
-                                        <div class="col">
-                                            <div>Формальный параметр</div>
-                                        </div>
-                                        <div class="col">
-                                            <div>Фактический параметр</div>
-                                        </div>
-                                        <div class="col">
-                                            <div>Значение параметра</div>
-                                        </div>
-                                    </div>
-                                    @foreach($predicate->formal_parameters as $parameter)
-                                        <div class="row mb-1">
-                                            <div class="col">
-                                                <label for='parameters{{ $loop->iteration }}' class="control-label">{{ $loop->iteration }}. "{{ $parameter->name }}"</label>
-                                            </div>
-                                            <div class="col">
-                                                <select style="resize:none" id='parameters{{ $loop->iteration }}' type="textarea" class="form-control form-control-sm" name='parameters[]' disabled>
-                                                        <option value="{{ $parameter->actual_parameter->id }}">{{ $parameter->actual_parameter->name }}</option>
-                                                </select>
-                                            </div>
-                                            <div class="col">
-                                                <select style="resize:none" id='parameters{{ $loop->iteration }}' type="textarea" class="form-control form-control-sm" name='parameters[]' disabled>
-                                                    <option value="{{ $parameter->actual_value->id }}">{{ $parameter->actual_value->value }}</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    @endforeach
-                                </div>
-
-                                <div class="row">
-                                    <div class="col">
-                                        <a class="btn btn-sm btn-primary" href="{{ route('web.products.read', ['id' => $product->id]) }}">Назад</a>
-                                    </div>
                                 </div>
 
                             </div>

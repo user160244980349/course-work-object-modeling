@@ -11,7 +11,7 @@
                         <div class="row card-title">
 
                             <div class="col">
-                                <b>Определение предиката конфигурирования</b>
+                                <b>Назначение предиката конфигурирования</b>
                             </div>
 
                             <div class="col-md-3 d-flex justify-content-end">
@@ -22,7 +22,7 @@
 
                         </div>
 
-                        <form role="form" method="post" action="{{ route('products.predicates.step2', ['prod_id' => $product->id]) }}">
+                        <form role="form" method="post" action="{{ route('products.configure.positions.step2', ['prod_id' => $product->id, 'id' => $position->id]) }}">
                             @csrf
 
                             <div class="row">

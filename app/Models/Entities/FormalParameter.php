@@ -6,19 +6,21 @@ use Illuminate\Database\Eloquent\Model;
 
 class FormalParameter extends Model
 {
+    protected $guarded = ['id'];
 
-    protected $fillable = [
-        'name', 'value', 'predicate_id'
-    ];
-
-    public function predicate()
+    public function predicate_instance()
     {
-        return $this->belongsTo('App\Models\Entities\Predicate');
+        return $this->belongsTo('App\Models\Entities\PredicateInstance', 'predicate_instance_id');
     }
 
-    public function actual_parameter()
+    public function parameter()
     {
-        return $this->belongsTo('App\Models\Entities\ConfigureParameter', 'actual_parameter_id');
+        return $this->belongsTo('App\Models\Entities\ConfigureParameter', 'configure_parameter_id');
+    }
+
+    public function value()
+    {
+        return $this->belongsTo('App\Models\ParameterValues\ConfigureString', 'configure_string_id');
     }
 
 }

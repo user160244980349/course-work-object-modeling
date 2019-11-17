@@ -291,7 +291,7 @@
                                 <div class="col d-flex flex-row-reverse">
                                     <div class="btn-group-sm">
                                         <a class="btn btn-primary"
-                                           href="{{ route('web.products.configure.variants.index', ['prod_id' => $product->id]) }}">Конфигурируемые позиции</a>
+                                           href="{{ route('web.products.configure.positions.index', ['prod_id' => $product->id]) }}">Конфигурируемые позиции</a>
                                         <a class="btn btn-success"
                                            href="{{ route('web.products.positions.create', ['prod_id' => $product->id]) }}">Добавить</a>
                                     </div>
@@ -373,7 +373,7 @@
                                 <div class="col d-flex flex-row-reverse">
                                     <div class="btn-group-sm">
                                         <a class="btn btn-success"
-                                           href="{{ route('products.configure.create', ['prod_id' => $product->id]) }}">Добавить</a>
+                                           href="{{ route('products.configure.parameters.create', ['prod_id' => $product->id]) }}">Добавить</a>
                                     </div>
                                 </div>
 
@@ -407,13 +407,13 @@
                                                                 <div class="d-flex justify-content-end">
 
                                                                     <form
-                                                                        action="{{ route('products.configure.delete', ['prod_id' => $product->id, 'id' => $param->id]) }}"
+                                                                        action="{{ route('products.configure.parameters.delete', ['prod_id' => $product->id, 'id' => $param->id]) }}"
                                                                         method="post">
                                                                         @csrf
                                                                         @method('delete')
 
                                                                         <div class="btn-group-sm">
-                                                                            <a class="btn btn-outline-primary" href="{{ route('web.products.configure.read', ['prod_id' => $product->id, 'id' => $param->id]) }}">Подробнее</a>
+                                                                            <a class="btn btn-outline-primary" href="{{ route('web.products.configure.parameters.read', ['prod_id' => $product->id, 'id' => $param->id]) }}">Подробнее</a>
                                                                             <input type="submit" class="btn btn-outline-danger"
                                                                                    value="Удалить"/>
                                                                         </div>
@@ -437,83 +437,6 @@
 
                     </div>
 
-                    <!-- SIXTH CARD FOR PREDICATES -->
-                    <div class="card mb-3">
-                        <div class="card-body">
-
-                            <div class="row card-title">
-
-                                <div class="col">
-                                    <b>Предикаты конфигурирования</b>
-                                </div>
-
-                                <div class="col d-flex flex-row-reverse">
-                                    <div class="btn-group-sm">
-                                        <a class="btn btn-success"
-                                           href="{{ route('web.products.predicates.step1', ['prod_id' => $product->id]) }}">Добавить</a>
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <div class="row">
-                                <div class="col">
-
-                                    <div class="row">
-                                        <div class="col">
-
-                                            @if($product->predicates->isEmpty())
-                                                <div class="d-flex justify-content-center">
-                                                    <i>Список пуст</i>
-                                                </div>
-                                            @else
-                                                <table class="table table-sm mb-0">
-                                                    <thead>
-                                                    <tr>
-                                                        <th scope="col">#</th>
-                                                        <th scope="col">Название</th>
-                                                        <th scope="col"><div class="d-flex justify-content-end">Действия</div></th>
-                                                    </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        @foreach ($product->predicates as $predicate)
-                                                            <tr>
-                                                                <th scope="row">{{ $loop->iteration }}</th>
-                                                                <td>{{ $predicate->name }}</td>
-                                                                <td>
-                                                                    <div class="d-flex justify-content-end">
-
-                                                                        <form
-                                                                            action="{{ route('products.predicates.delete', ['prod_id' => $product->id, 'id' => $predicate->id]) }}"
-                                                                            method="post">
-                                                                            @csrf
-                                                                            @method('delete')
-
-                                                                            <div class="btn-group-sm">
-                                                                                <a class="btn btn-outline-primary"
-                                                                                   href="{{ route('web.products.predicates.read', ['prod_id' => $product->id, 'id' => $predicate->id]) }}">Подробнее</a>
-                                                                                <input type="submit" class="btn btn-outline-danger"
-                                                                                       value="Удалить"/>
-                                                                            </div>
-
-                                                                        </form>
-
-                                                                    </div>
-                                                                </td>
-                                                            </tr>
-                                                        @endforeach
-                                                    </tbody>
-                                                </table>
-                                            @endif
-
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
                 @endif
 
             </div>

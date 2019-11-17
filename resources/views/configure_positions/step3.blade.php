@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-md-8 offset-2">
 
-                <form role="form" method="post" action="{{ route('products.predicates.step3', ['prod_id' => $product->id]) }}">
+                <form role="form" method="post" action="{{ route('products.configure.positions.step3', ['prod_id' => $product->id, 'id' => $position->id]) }}">
                     @csrf
 
                     <div class="card">
@@ -80,12 +80,12 @@
                                                 </div>
                                                 <div class="col">
                                                     <select id='parameters' type="textarea" class="form-control form-control-sm" name='parameters' disabled>
-                                                            <option value="{{ $parameter->actual_parameter->id }}">{{ $parameter->actual_parameter->name }}</option>
+                                                            <option value="{{ $parameter->parameter->id }}">{{ $parameter->parameter->name }}</option>
                                                     </select>
                                                 </div>
                                                 <div class="col">
                                                     <select id='values{{ $loop->iteration }}' type="textarea" class="form-control form-control-sm" name='values[]'>
-                                                        @foreach($parameter->actual_parameter->strings as $value)
+                                                        @foreach($parameter->parameter->strings as $value)
                                                         <option value="{{ $value->id }}">{{ $value->value }}</option>
                                                         @endforeach
                                                     </select>

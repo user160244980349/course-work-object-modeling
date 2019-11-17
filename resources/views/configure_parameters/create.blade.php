@@ -23,7 +23,7 @@
 
                         </div>
 
-                        <form role="form" method="post" action="{{ route('products.configure.create', ['prod_id' => $product->id]) }}">
+                        <form role="form" method="post" action="{{ route('products.configure.parameters.create', ['prod_id' => $product->id]) }}">
                             @csrf
 
                             <div class="row">

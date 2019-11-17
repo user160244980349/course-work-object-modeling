@@ -6,10 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Metric extends Model
 {
-
-    protected $fillable = [
-        'name', 'extended_name'
-    ];
+    protected $guarded = ['id'];
 
     public function parameters()
     {
