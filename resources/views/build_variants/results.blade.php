@@ -58,10 +58,10 @@
                                                             <a href="{{ route('web.products.read', ['id' => $product_in_pos->id]) }}">{{ $product_in_pos->name }}</a>
                                                         </td>
                                                         <td>
-{{--                                                            {{ $content_position->valuable->value }}--}}
+                                                            {{ $product_in_pos->count }}
                                                         </td>
                                                         <td>
-{{--                                                            {{ $content_position->content->metric->name }}--}}
+                                                            {{ $product_in_pos->metric->name }}
                                                         </td>
                                                     </tr>
                                                 @endforeach

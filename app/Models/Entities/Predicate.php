@@ -40,7 +40,7 @@ class Predicate extends Model
     {
         $parameters_names = array();
         preg_match_all('/{([a-zA-Z0-9]+)}/', $this->expression, $parameters_names);
-        $parameters_names = $parameters_names[1];
+        $parameters_names = array_unique($parameters_names[1]);
 
         return $parameters_names;
     }
@@ -59,9 +59,8 @@ class Predicate extends Model
                 '(' => 0,
                 ')' => 0,
                 '+' => 1,
-                '-' => 1,
                 '*' => 2,
-                '/' => 2,
+                '!' => 3,
             );
             $token = '';
             foreach (str_split($this->expressionToPlaceValues) as $char) {
@@ -133,25 +132,19 @@ class Predicate extends Model
             // Тут ошибки не ловил, но они могут быть (это домашнее задание)
             foreach ($calculationQueue as $token) {
                 switch ($token) {
+                    case '!':
+                        $arg1 = array_pop($calcStack);
+                        array_push($calcStack, !$arg1);
+                        break;
                     case '+':
                         $arg2 = array_pop($calcStack);
                         $arg1 = array_pop($calcStack);
-                        array_push($calcStack, $arg1 + $arg2);
-                        break;
-                    case '-':
-                        $arg2 = array_pop($calcStack);
-                        $arg1 = array_pop($calcStack);
-                        array_push($calcStack, $arg1 - $arg2);
+                        array_push($calcStack, $arg1 || $arg2);
                         break;
                     case '*':
                         $arg2 = array_pop($calcStack);
                         $arg1 = array_pop($calcStack);
-                        array_push($calcStack, $arg1 * $arg2);
-                        break;
-                    case '/':
-                        $arg2 = array_pop($calcStack);
-                        $arg1 = array_pop($calcStack);
-                        array_push($calcStack, $arg1 / $arg2);
+                        array_push($calcStack, $arg1 && $arg2);
                         break;
                     default:
                         array_push($calcStack, $token);

@@ -35,7 +35,7 @@ class BuildVariantsController extends Controller
 
         $level = -1;
         $content_list = new Collection;
-        $this->recurse_leveling_with_calculations($content_list, $level, $subtree, $product, $actuals);
+        $this->leveling_with_calculations($content_list, $level, $subtree, null, $product->id, $actuals);
         $levels = $content_list->groupBy('level');
 
         Session::put('levels', $levels);
@@ -43,18 +43,18 @@ class BuildVariantsController extends Controller
         return redirect()->route('web.build.results');
     }
 
-    private function recurse_leveling_with_calculations(&$content_list, &$level, &$subtree, $root, $actuals) {
+    private function leveling_with_calculations(&$content_list, &$level, &$subtree, $count, $rootId, $actuals) {
         $level++;
 
+        $subtree->count = $count;
         $subtree->level = $level;
         $content_list->push($subtree);
 
-        foreach ($subtree->positions as $position) {
+        foreach ($subtree->positions_recurse as $position) {
 
-            $predicate_instance = $position->predicate_instances()->where('product_id', '=', $root->id)->first();
+            $predicate_instance = $position->predicate_instances()->where('product_id', '=', $rootId)->first();
 
             if (isset($predicate_instance)) {
-
                 $predicate = $predicate_instance->predicate;
                 $formals = $predicate_instance->formal_parameters;
 
@@ -63,12 +63,12 @@ class BuildVariantsController extends Controller
                 }
 
                 if (intval($predicate->calculate())  > 0) {
-                    $this->recurse_leveling_with_calculations($content_list, $level, $position->content, $root, $actuals);
+                    $this->leveling_with_calculations($content_list, $level, $position->content_recurse, $position->valuable->value, $rootId, $actuals);
                 }
-            } else {
-                $this->recurse_leveling_with_calculations($content_list, $level, $position->content, $root, $actuals);
+                continue;
             }
 
+            $this->leveling_with_calculations($content_list, $level, $position->content_recurse, $position->valuable->value, $rootId, $actuals);
         }
 
         $level--;
