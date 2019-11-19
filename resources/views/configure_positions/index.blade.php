@@ -49,7 +49,8 @@
                                                 <tr>
                                                     <th scope="col">#</th>
                                                     <th scope="col">Название</th>
-                                                    <th scope="col">Предикат</th>
+                                                    <th scope="col">Количество</th>
+                                                    <th scope="col">Метрика</th>
                                                     <th scope="col"><div class="d-flex justify-content-end">Действия</div></th>
                                                 </tr>
                                                 @foreach($level as $product_in_pos)
@@ -59,10 +60,13 @@
                                                             <td>
                                                                 <a href="{{ route('web.products.read', ['id' => $content_position->content_recurse->id]) }}">{{ $content_position->content_recurse->name }}</a>
                                                             </td>
+                                                            <td>
+                                                                {{ $content_position->valuable->value }}
+                                                            </td>
+                                                            <td>
+                                                                {{ $product_in_pos->metric->name }}
+                                                            </td>
                                                             @if($content_position->predicate_instances()->where('product_id', '=', $product->id)->get()->isNotEmpty())
-                                                                <td>
-                                                                    {{ $content_position->predicate_instances()->where('product_id', '=', $product->id)->first()->predicate->name }}
-                                                                </td>
                                                                 <td>
                                                                     <div class="d-flex justify-content-end">
                                                                         <form action="{{ route('products.configure.positions.delete', ['prod_id' => $product->id, 'id' => $content_position->id]) }}" method="post">
@@ -76,9 +80,6 @@
                                                                     </div>
                                                                 </td>
                                                             @else
-                                                                <td>
-                                                                    Нет предиката
-                                                                </td>
                                                                 <td>
                                                                     <div class="d-flex justify-content-end">
                                                                         <a class="btn btn-sm btn-outline-success" href="{{ route('web.products.configure.positions.step1', ['prod_id' => $product->id, 'id' => $content_position->id]) }}">Назначить предикат</a>
