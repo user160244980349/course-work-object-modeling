@@ -4,7 +4,7 @@
     <div class="container">
 
         <div class="row">
-            <div class="col-md-6 offset-6">
+            <div class="col-md-6 offset-3">
 
                 <div class="card border-danger mb-3">
                     <div class="card-body border-danger">

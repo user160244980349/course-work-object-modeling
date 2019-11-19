@@ -11,39 +11,42 @@
                         <div class="row card-title">
 
                             <div class="col">
-                                <b>Новый классификатор документов</b>
+                                <b>Конфигурирование изделия</b>
                             </div>
 
                             <div class="col d-flex justify-content-end">
                                 <div class="btn-group-sm">
-                                    <a class="btn btn-primary"
-                                       href="{{ route('web.document_classes.index') }}">К списку</a>
                                     <a class="btn btn-primary" href="{{ route('home') }}">На главную</a>
                                 </div>
                             </div>
 
                         </div>
 
-                        <form role="form" method="post" action="{{ route('document_classes.create') }}">
+                        <form role="form" method="post" action="{{ route('build.step2') }}">
                             @csrf
 
+                            @foreach($product->conf_params as $parameter)
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col">
-                                        <label for="class" class="control-label">Название классификатора</label>
+                                        <label for="parameters{{ $loop->iteration }}" class="control-label">{{ $parameter->name }}</label>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col">
-                                        <input id="name" type="text" class="form-control form-control-sm" name="name" value="Новый классификатор документов" required
-                                               autofocus/>
+                                        <select class="form-control form-control-sm" name="parameters[{{ $parameter->id }}]" id="parameters{{ $loop->iteration }}">
+                                            @foreach($parameter->strings as $value)
+                                                <option value="{{ $value->id }}">{{ $value->value }}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
                             </div>
+                            @endforeach
 
                             <div class="row">
                                 <div class="col">
-                                    <input type="submit" class="btn btn-sm btn-primary" value="Создать"/>
+                                    <input type="submit" class="btn btn-sm btn-primary" value="Собрать"/>
                                 </div>
                             </div>
 

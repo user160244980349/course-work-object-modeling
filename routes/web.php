@@ -194,7 +194,7 @@ Route::group(['middleware' => 'auth'], function () {
 
         Route::get('step1', 'BuildVariants\BuildVariantsWebController@step1')->name('web.build.step1');
         Route::get('step2', 'BuildVariants\BuildVariantsWebController@step2')->name('web.build.step2');
-        Route::get('result', 'BuildVariants\BuildVariantsWebController@result')->name('web.build.result');
+        Route::get('results', 'BuildVariants\BuildVariantsWebController@results')->name('web.build.results');
 
         Route::post('step1', 'BuildVariants\BuildVariantsController@step1')->name('build.step1');
         Route::post('step2', 'BuildVariants\BuildVariantsController@step2')->name('build.step2');

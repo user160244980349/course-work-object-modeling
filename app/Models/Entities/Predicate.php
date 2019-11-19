@@ -8,27 +8,49 @@ use Illuminate\Database\Eloquent\Model;
 class Predicate extends Model
 {
     protected $guarded = ['id'];
+    protected $expressionToPlaceValues;
 
     public function instances()
     {
         return $this->hasMany('App\Models\Entities\PredicateInstance');
     }
 
+    public function replaceWith($parameter, $value)
+    {
+        if (!isset($this->expressionToPlaceValues)) {
+            $this->flushExpression();
+        }
+
+        $this->expressionToPlaceValues = preg_replace("/\{$parameter\}/", $value, $this->expressionToPlaceValues);
+
+        return;
+    }
+
+    public function flushExpression()
+    {
+        $this->expressionToPlaceValues = $this->expression;
+    }
+
+    public function getExpression()
+    {
+        return $this->expressionToPlaceValues;
+    }
+
     public function parameter_names()
     {
         $parameters_names = array();
         preg_match_all('/{([a-zA-Z0-9]+)}/', $this->expression, $parameters_names);
-        $parameters_names = $parameters_names[1];
+        $parameters_names = array_unique($parameters_names[1]);
 
         return $parameters_names;
     }
 
-    public function calculate($statement) {
+    public function calculate() {
         // Собственно сам вычислитель выражений
 
         try {
 
-            if (!is_string($statement)) {
+            if (!is_string($this->expressionToPlaceValues)) {
                 throw new ArithmeticException('Wrong type', 1);
             }
             $calculationQueue = array();
@@ -37,12 +59,11 @@ class Predicate extends Model
                 '(' => 0,
                 ')' => 0,
                 '+' => 1,
-                '-' => 1,
                 '*' => 2,
-                '/' => 2,
+                '!' => 3,
             );
             $token = '';
-            foreach (str_split($statement) as $char) {
+            foreach (str_split($this->expressionToPlaceValues) as $char) {
                 // Если цифра, то собираем из цифр число
                 if ($char >= '0' && $char <= '9') {
                     $token .= $char;
@@ -111,25 +132,19 @@ class Predicate extends Model
             // Тут ошибки не ловил, но они могут быть (это домашнее задание)
             foreach ($calculationQueue as $token) {
                 switch ($token) {
+                    case '!':
+                        $arg1 = array_pop($calcStack);
+                        array_push($calcStack, !$arg1);
+                        break;
                     case '+':
                         $arg2 = array_pop($calcStack);
                         $arg1 = array_pop($calcStack);
-                        array_push($calcStack, $arg1 + $arg2);
-                        break;
-                    case '-':
-                        $arg2 = array_pop($calcStack);
-                        $arg1 = array_pop($calcStack);
-                        array_push($calcStack, $arg1 - $arg2);
+                        array_push($calcStack, $arg1 || $arg2);
                         break;
                     case '*':
                         $arg2 = array_pop($calcStack);
                         $arg1 = array_pop($calcStack);
-                        array_push($calcStack, $arg1 * $arg2);
-                        break;
-                    case '/':
-                        $arg2 = array_pop($calcStack);
-                        $arg1 = array_pop($calcStack);
-                        array_push($calcStack, $arg1 / $arg2);
+                        array_push($calcStack, $arg1 && $arg2);
                         break;
                     default:
                         array_push($calcStack, $token);
@@ -140,6 +155,8 @@ class Predicate extends Model
 
             return $exception;
         }
+
+        $this->flushExpression();
 
         return array_pop($calcStack);
     }
