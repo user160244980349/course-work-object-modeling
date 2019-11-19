@@ -8,10 +8,32 @@ use Illuminate\Database\Eloquent\Model;
 class Predicate extends Model
 {
     protected $guarded = ['id'];
+    protected $expressionToPlaceValues;
 
     public function instances()
     {
         return $this->hasMany('App\Models\Entities\PredicateInstance');
+    }
+
+    public function replaceWith($parameter, $value)
+    {
+        if (!isset($this->expressionToPlaceValues)) {
+            $this->flushExpression();
+        }
+
+        $this->expressionToPlaceValues = preg_replace("/\{$parameter\}/", $value, $this->expressionToPlaceValues);
+
+        return;
+    }
+
+    public function flushExpression()
+    {
+        $this->expressionToPlaceValues = $this->expression;
+    }
+
+    public function getExpression()
+    {
+        return $this->expressionToPlaceValues;
     }
 
     public function parameter_names()
@@ -23,12 +45,12 @@ class Predicate extends Model
         return $parameters_names;
     }
 
-    public function calculate($statement) {
+    public function calculate() {
         // Собственно сам вычислитель выражений
 
         try {
 
-            if (!is_string($statement)) {
+            if (!is_string($this->expressionToPlaceValues)) {
                 throw new ArithmeticException('Wrong type', 1);
             }
             $calculationQueue = array();
@@ -42,7 +64,7 @@ class Predicate extends Model
                 '/' => 2,
             );
             $token = '';
-            foreach (str_split($statement) as $char) {
+            foreach (str_split($this->expressionToPlaceValues) as $char) {
                 // Если цифра, то собираем из цифр число
                 if ($char >= '0' && $char <= '9') {
                     $token .= $char;
@@ -140,6 +162,8 @@ class Predicate extends Model
 
             return $exception;
         }
+
+        $this->flushExpression();
 
         return array_pop($calcStack);
     }

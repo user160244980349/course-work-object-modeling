@@ -11,43 +11,52 @@
                         <div class="row card-title">
 
                             <div class="col">
-                                <b>Новый классификатор документов</b>
+                                <b>Выбор изделия для сборки</b>
                             </div>
 
                             <div class="col d-flex justify-content-end">
                                 <div class="btn-group-sm">
-                                    <a class="btn btn-primary"
-                                       href="{{ route('web.document_classes.index') }}">К списку</a>
                                     <a class="btn btn-primary" href="{{ route('home') }}">На главную</a>
                                 </div>
                             </div>
 
                         </div>
 
-                        <form role="form" method="post" action="{{ route('document_classes.create') }}">
-                            @csrf
+                        <div class="row">
+                            <div class="col">
 
-                            <div class="form-group">
-                                <div class="row">
-                                    <div class="col">
-                                        <label for="class" class="control-label">Название классификатора</label>
+                                @if($products->isEmpty())
+                                    <div class="d-flex justify-content-center">
+                                        <i>Список изделий пуст</i>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col">
-                                        <input id="name" type="text" class="form-control form-control-sm" name="name" value="Новый классификатор документов" required
-                                               autofocus/>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col">
-                                    <input type="submit" class="btn btn-sm btn-primary" value="Создать"/>
-                                </div>
-                            </div>
-
-                        </form>
+                                @else
+                                    <table class="table table-sm mb-0">
+                                        <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Название</th>
+                                            <th scope="col"><div class="d-flex justify-content-end">Действия</div></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        @foreach ($products as $product)
+                                            <tr>
+                                                <th scope="row">{{ $loop->iteration }}</th>
+                                                <td>{{ $product->name }}</td>
+                                                <td>
+                                                    <div class="d-flex justify-content-end">
+                                                        <form action="{{ route('build.step1') }}" method="post">
+                                                            @csrf
+                                                            <input type="hidden" value="{{ $product->id }}" name="product">
+                                                            <input type="submit" class="btn btn-sm btn-outline-primary" value="Выбрать">
+                                                        </form>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                        </tbody>
+                                    </table>
+                                @endif
 
                     </div>
                 </div>
