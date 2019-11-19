@@ -89,6 +89,23 @@
 
                                             <div class="row">
                                                 <div class="col">
+                                                    <label for="value" class="control-label">Значение параметра</label>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col">
+                                                    <input id="value" type="text" class="form-control form-control-sm" name="value"
+                                                           value="{{ $parameter->valuable->value }}" required/>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="form-group">
+
+                                            <div class="row">
+                                                <div class="col">
                                                     <label for="metric" class="control-label">Норма расчета</label>
                                                 </div>
                                             </div>

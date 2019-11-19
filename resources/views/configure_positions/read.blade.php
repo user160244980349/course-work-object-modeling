@@ -16,6 +16,7 @@
 
                             <div class="col-md-3 d-flex justify-content-end">
                                 <div class="btn-group-sm">
+                                    <a class="btn btn-sm btn-primary" href="{{ route('web.products.configure.positions.index', ['prod_id' => $product->id]) }}">Назад</a>
                                     <a class="btn btn-primary" href="{{ route('home') }}">На главную</a>
                                 </div>
                             </div>
@@ -58,7 +59,7 @@
 
                                 </div>
 
-                                <div class="form-group">
+                                <div class="form-group mb-0">
                                     <div class="row mb-1">
                                         <div class="col">
                                             <div>Формальный параметр</div>
@@ -87,12 +88,6 @@
                                             </div>
                                         </div>
                                     @endforeach
-                                </div>
-
-                                <div class="row">
-                                    <div class="col">
-                                        <a class="btn btn-sm btn-primary" href="{{ route('web.products.configure.positions.index', ['prod_id' => $product->id]) }}">Назад</a>
-                                    </div>
                                 </div>
 
                             </div>

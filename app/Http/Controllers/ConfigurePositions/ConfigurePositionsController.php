@@ -33,15 +33,15 @@ class ConfigurePositionsController extends Controller
         $predicate_inst->position()->associate($position);
         $predicate_inst->predicate()->associate($predicate);
 
-        $parameters_names = array();
-        preg_match_all('/{([a-zA-Z0-9]+)}/', $predicate->expression, $parameters_names);
-        $parameters_names = $parameters_names[1];
+
+        $names = $predicate->parameter_names();
+
 
         $parameter_models = new Collection;
 
-        foreach ($parameters_names as $parameter_name) {
+        foreach ($names as $name) {
             $parameter_models->push(new FormalParameter([
-                'name' => $parameter_name,
+                'name' => $name,
             ]));
         }
 

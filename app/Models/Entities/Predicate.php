@@ -14,6 +14,15 @@ class Predicate extends Model
         return $this->hasMany('App\Models\Entities\PredicateInstance');
     }
 
+    public function parameter_names()
+    {
+        $parameters_names = array();
+        preg_match_all('/{([a-zA-Z0-9]+)}/', $this->expression, $parameters_names);
+        $parameters_names = $parameters_names[1];
+
+        return $parameters_names;
+    }
+
     public function calculate($statement) {
         // Собственно сам вычислитель выражений
 
