@@ -31,11 +31,21 @@ class BuildVariantsController extends Controller
     {
         $actuals = $request->input('parameters');
         $product = Session::get('product');
-        $subtree = Product::where('id', '=', $product->id)->with('positions')->first();
+        $subtree = Product::where('id', '=', $product->id)
+            ->with('positions')
+            ->first();
 
         $level = -1;
         $content_list = new Collection;
-        $this->leveling_with_calculations($content_list, $level, $subtree, null, $product->id, $actuals);
+        $this->leveling_with_calculations(
+            $content_list,
+            $level,
+            $subtree,
+            null,
+            $product->id,
+            $actuals
+        );
+
         $levels = $content_list->groupBy('level');
 
         Session::put('levels', $levels);
@@ -43,7 +53,13 @@ class BuildVariantsController extends Controller
         return redirect()->route('web.build.results');
     }
 
-    private function leveling_with_calculations(&$content_list, &$level, &$subtree, $count, $rootId, $actuals) {
+    private function leveling_with_calculations(&$content_list,
+                                                &$level,
+                                                &$subtree,
+                                                $count,
+                                                $rootId,
+                                                $actuals) {
+
         $level++;
 
         $subtree->count = $count;
@@ -52,23 +68,40 @@ class BuildVariantsController extends Controller
 
         foreach ($subtree->positions_recurse as $position) {
 
-            $predicate_instance = $position->predicate_instances()->where('product_id', '=', $rootId)->first();
+            $predicate_instance = $position
+                ->predicate_instances()
+                ->where('product_id', '=', $rootId)->first();
 
             if (isset($predicate_instance)) {
                 $predicate = $predicate_instance->predicate;
                 $formals = $predicate_instance->formal_parameters;
 
                 foreach ($formals as $formal) {
-                    $predicate->replaceWith($formal->name, $formal->value->id == $actuals[$formal->parameter->id] ? 1 : 0);
+                    $predicate->replaceWith(
+                        $formal->name,
+                        $formal->value->id == $actuals[$formal->parameter->id] ? 1 : 0);
                 }
 
-                if (intval($predicate->calculate())  > 0) {
-                    $this->leveling_with_calculations($content_list, $level, $position->content_recurse, $position->valuable->value, $rootId, $actuals);
+                if (intval($predicate->calculate()) > 0) {
+                    $this->leveling_with_calculations(
+                        $content_list,
+                        $level,
+                        $position->content_recurse,
+                        $position->valuable->value,
+                        $rootId,
+                        $actuals
+                    );
                 }
                 continue;
             }
 
-            $this->leveling_with_calculations($content_list, $level, $position->content_recurse, $position->valuable->value, $rootId, $actuals);
+            $this->leveling_with_calculations($content_list,
+                $level,
+                $position->content_recurse,
+                $position->valuable->value,
+                $rootId,
+                $actuals
+            );
         }
 
         $level--;
