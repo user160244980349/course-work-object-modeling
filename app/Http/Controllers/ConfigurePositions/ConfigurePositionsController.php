@@ -79,6 +79,7 @@ class ConfigurePositionsController extends Controller
         $parameter_models = Session::get('parameter_models');
 
         $parameter_values = $request->input('values');
+
         $predicate_inst->save();
 
         for ($i = 0; $i < count($parameter_values); $i++) {
