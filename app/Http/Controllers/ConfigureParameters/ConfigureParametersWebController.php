@@ -16,7 +16,7 @@ class ConfigureParametersWebController extends Controller
         return view('configure_parameters/create')
             ->with(['product' => Product::find($prod_id)])
             ->with(['metrics' => Metric::all()])
-            ->with(['class' => ParameterClass::find(2)]);
+            ->with(['class' => ParameterClass::where('name', '=', 'Конфигурационный')->first()]);
     }
 
     public function read($prod_id, $id)

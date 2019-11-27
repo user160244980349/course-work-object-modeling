@@ -15,7 +15,7 @@ class ConfigureParametersController extends Controller
     public function create(Request $request, $prod_id)
     {
         $product = Product::find($prod_id);
-        $class = ParameterClass::find(2);
+        $class = ParameterClass::where('name', '=', 'Конфигурационный')->first();
         $metric = Metric::find($request->input('metric'));
 
         $parameter = new ConfigureParameter([
@@ -33,6 +33,7 @@ class ConfigureParametersController extends Controller
 
     public function delete($prod_id, $id)
     {
+
         if (ConfigureParameter::find($id)->formal_parameters->isNotEmpty())
             return view('error', [
                 'error_text' => 'Невозможно удалить ресурс, пока он связан с другими ресурсами'

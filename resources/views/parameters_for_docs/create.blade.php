@@ -42,9 +42,11 @@
                                         <div class="row">
                                             <div class="col">
                                                 <select id="class" type="select" class="form-control form-control-sm"
-                                                        name="class" disabled>
-                                                    <option
-                                                            value="{{ $class->id }}">{{ $class->name }}</option>
+                                                        name="class" required>
+                                                    @foreach($classes as $class)
+                                                        <option
+                                                                value="{{ $class->id }}">{{ $class->name }}</option>
+                                                    @endforeach
                                                 </select>
                                             </div>
                                         </div>

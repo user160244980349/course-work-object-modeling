@@ -22,7 +22,16 @@ class ProductClassController extends Controller
 
     public function update(Request $request, $id)
     {
-        ProductClass::find($id)->update([
+        $product_class = ProductClass::find($id);
+        if ($product_class->name == 'Материал'
+            || $product_class->name == 'Сборочная единица'
+            || $product_class->name == 'Стандартное изделие'
+            || $product_class->name == 'Оконченное изделие')
+            return view('error', [
+                'error_text' => 'Невозможно изменить базовый классификатор'
+            ]);
+
+        $product_class->update([
             'name' => $request->input('name'),
             'terminal_in' => $request->input('terminal_in') === 'on' ? true : false,
             'terminal_out' => $request->input('terminal_out') === 'on' ? true : false,
@@ -33,6 +42,15 @@ class ProductClassController extends Controller
 
     public function delete($id)
     {
+        $product_class = ProductClass::find($id);
+        if ($product_class->name == 'Материал'
+            || $product_class->name == 'Сборочная единица'
+            || $product_class->name == 'Стандартное изделие'
+            || $product_class->name == 'Оконченное изделие')
+            return view('error', [
+                'error_text' => 'Невозможно удалить базовый классификатор'
+            ]);
+
         if (ProductClass::find($id)->products->isNotEmpty())
             return view('error', [
                 'error_text' => 'Невозможно удалить ресурс, пока он связан с другими ресурсами'
