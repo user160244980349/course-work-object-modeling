@@ -36,7 +36,8 @@
 
                                     <div class="row">
                                         <div class="col">
-                                            <input id="name" type="text" class="form-control form-control-sm" name="name"
+                                            <input id="name" type="text" class="form-control form-control-sm"
+                                                   name="name"
                                                    value="{{ $metric->name }}" disabled/>
                                         </div>
                                     </div>
@@ -53,7 +54,8 @@
 
                                     <div class="row">
                                         <div class="col">
-                                            <input id="extended_name" type="text" class="form-control form-control-sm" name="extended_name"
+                                            <input id="extended_name" type="text" class="form-control form-control-sm"
+                                                   name="extended_name"
                                                    value="{{ $metric->extended_name }}" disabled/>
                                         </div>
                                     </div>

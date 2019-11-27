@@ -16,7 +16,8 @@
 
                             <div class="col d-flex justify-content-end">
                                 <div class="btn-group-sm">
-                                    <a class="btn btn-primary" href="{{ route('web.products.configure.parameters.read', ['prod_id' => $product->id, 'conf_id' => $parameter->id]) }}">Назад</a>
+                                    <a class="btn btn-primary"
+                                       href="{{ route('web.products.configure.parameters.read', ['prod_id' => $product->id, 'conf_id' => $parameter->id]) }}">Назад</a>
                                     <a class="btn btn-primary" href="{{ route('home') }}">На главную</a>
                                 </div>
                             </div>
@@ -39,7 +40,8 @@
 
                                         <div class="row">
                                             <div class="col">
-                                                <input id="value" type="text" class="form-control form-control-sm" name="value" required
+                                                <input id="value" type="text" class="form-control form-control-sm"
+                                                       name="value" required
                                                        autofocus/>
                                             </div>
                                         </div>

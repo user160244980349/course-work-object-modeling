@@ -17,7 +17,8 @@
 
                             <div class="col d-flex justify-content-end">
                                 <div class="btn-group-sm">
-                                    <a class="btn btn-primary" href="{{ route('web.products.read', ['id' => $product->id]) }}">Назад</a>
+                                    <a class="btn btn-primary"
+                                       href="{{ route('web.products.read', ['id' => $product->id]) }}">Назад</a>
                                     <a class="btn btn-primary" href="{{ route('home') }}">На главную</a>
                                 </div>
                             </div>
@@ -43,9 +44,10 @@
 
                                     <div class="row">
                                         <div class="col">
-                                            <select id="class" type="select" class="form-control form-control-sm" name="class" disabled>
+                                            <select id="class" type="select" class="form-control form-control-sm"
+                                                    name="class" disabled>
                                                 <option
-                                                    value="{{ $document->document_class->id }}">{{ $document->document_class->name }}</option>
+                                                        value="{{ $document->document_class->id }}">{{ $document->document_class->name }}</option>
                                             </select>
                                         </div>
                                     </div>
@@ -62,7 +64,8 @@
 
                                     <div class="row">
                                         <div class="col">
-                                            <input id="name" type="text" class="form-control form-control-sm" name="name"
+                                            <input id="name" type="text" class="form-control form-control-sm"
+                                                   name="name"
                                                    value="{{ $document->name }}" disabled/>
                                         </div>
                                     </div>
@@ -126,43 +129,46 @@
                                         @else
                                             <table class="table table-sm mb-0">
                                                 <thead>
-                                                    <tr>
-                                                        <th scope="col">#</th>
-                                                        <th scope="col">Название</th>
-                                                        <th scope="col">Значение</th>
-                                                        <th scope="col">Норма</th>
-                                                        <th scope="col"><div class="d-flex justify-content-end">Действия</div></th>
-                                                    </tr>
+                                                <tr>
+                                                    <th scope="col">#</th>
+                                                    <th scope="col">Название</th>
+                                                    <th scope="col">Значение</th>
+                                                    <th scope="col">Норма</th>
+                                                    <th scope="col">
+                                                        <div class="d-flex justify-content-end">Действия</div>
+                                                    </th>
+                                                </tr>
                                                 </thead>
                                                 <tbody>
-                                                    @foreach ($document->parameters as $parameter)
-                                                        <tr>
-                                                            <th scope="row">{{ $loop->iteration }}</th>
-                                                            <td>{{ $parameter->name }}</td>
-                                                            <td>{{ $parameter->valuable->value }}</td>
-                                                            <td>{{ $parameter->metric->name }}</td>
-                                                            <td>
-                                                                <div class="d-flex justify-content-end">
+                                                @foreach ($document->parameters as $parameter)
+                                                    <tr>
+                                                        <th scope="row">{{ $loop->iteration }}</th>
+                                                        <td>{{ $parameter->name }}</td>
+                                                        <td>{{ $parameter->valuable->value }}</td>
+                                                        <td>{{ $parameter->metric->name }}</td>
+                                                        <td>
+                                                            <div class="d-flex justify-content-end">
 
-                                                                    <form
+                                                                <form
                                                                         action="{{ route('documents.parameter.delete', ['prod_id' => $product->id, 'doc_id' => $document->id, 'id' => $parameter->id]) }}"
                                                                         method="post">
-                                                                        @csrf
-                                                                        @method('delete')
+                                                                    @csrf
+                                                                    @method('delete')
 
-                                                                        <div class="btn-group-sm">
-                                                                            <a class="btn btn-outline-primary"
-                                                                               href="{{ route('web.documents.parameter.read', ['prod_id' => $product->id, 'doc_id' => $document->id, 'id' => $parameter->id]) }}">Подробнее</a>
-                                                                            <input type="submit" class="btn btn-outline-danger"
-                                                                                   value="Удалить"/>
-                                                                        </div>
+                                                                    <div class="btn-group-sm">
+                                                                        <a class="btn btn-outline-primary"
+                                                                           href="{{ route('web.documents.parameter.read', ['prod_id' => $product->id, 'doc_id' => $document->id, 'id' => $parameter->id]) }}">Подробнее</a>
+                                                                        <input type="submit"
+                                                                               class="btn btn-outline-danger"
+                                                                               value="Удалить"/>
+                                                                    </div>
 
-                                                                    </form>
+                                                                </form>
 
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-                                                    @endforeach
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
                                                 </tbody>
                                             </table>
                                         @endif

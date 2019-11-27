@@ -45,7 +45,8 @@ class Predicate extends Model
         return $parameters_names;
     }
 
-    public function calculate() {
+    public function calculate()
+    {
         // Собственно сам вычислитель выражений
 
         try {

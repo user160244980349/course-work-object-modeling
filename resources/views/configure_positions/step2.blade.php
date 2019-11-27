@@ -22,7 +22,8 @@
 
                         </div>
 
-                        <form role="form" method="post" action="{{ route('products.configure.positions.step2', ['prod_id' => $product->id, 'id' => $position->id]) }}">
+                        <form role="form" method="post"
+                              action="{{ route('products.configure.positions.step2', ['prod_id' => $product->id, 'id' => $position->id]) }}">
                             @csrf
 
                             <div class="row">
@@ -38,7 +39,8 @@
 
                                         <div class="row">
                                             <div class="col">
-                                                <input id="name" class="text form-control form-control-sm" name="name" value="{{ $predicate->name }}" disabled/>
+                                                <input id="name" class="text form-control form-control-sm" name="name"
+                                                       value="{{ $predicate->name }}" disabled/>
                                             </div>
                                         </div>
 
@@ -48,14 +50,17 @@
 
                                         <div class="row">
                                             <div class="col">
-                                                <label for="expression" class="control-label">Логическое выражение</label>
+                                                <label for="expression" class="control-label">Логическое
+                                                    выражение</label>
                                             </div>
                                         </div>
 
                                         <div class="row">
                                             <div class="col">
-                                                <textarea spellcheck="false" style="resize:none" id="expression" type="textarea" class="form-control form-control-sm" name="expression"
-                                                       disabled>{{ $predicate->expression }}</textarea>
+                                                <textarea spellcheck="false" style="resize:none" id="expression"
+                                                          type="textarea" class="form-control form-control-sm"
+                                                          name="expression"
+                                                          disabled>{{ $predicate->expression }}</textarea>
                                             </div>
                                         </div>
 
@@ -73,17 +78,25 @@
                                         @foreach($parameters as $parameter)
                                             <div class="row mb-1">
                                                 <div class="col">
-                                                    <label for='parameters{{ $loop->iteration }}' class="control-label">{{ $loop->iteration }}. "{{ $parameter->name }}"</label>
+                                                    <label for='parameters{{ $loop->iteration }}'
+                                                           class="control-label">{{ $loop->iteration }}.
+                                                        "{{ $parameter->name }}"</label>
                                                 </div>
                                                 <div class="col-md-8">
                                                     @if($product->conf_params->isEmpty())
-                                                        <select style="resize:none" id='parameters{{ $loop->iteration }}' type="textarea" class="form-control form-control-sm" name='parameters[]' disabled></select>
+                                                        <select style="resize:none"
+                                                                id='parameters{{ $loop->iteration }}' type="textarea"
+                                                                class="form-control form-control-sm" name='parameters[]'
+                                                                disabled></select>
                                                     @else
-                                                    <select style="resize:none" id='parameters{{ $loop->iteration }}' type="textarea" class="form-control form-control-sm" name='parameters[]'>
-                                                        @foreach($product->conf_params as $configure_parameter)
-                                                            <option value="{{ $configure_parameter->id }}">{{ $configure_parameter->name }}</option>
-                                                        @endforeach
-                                                    </select>
+                                                        <select style="resize:none"
+                                                                id='parameters{{ $loop->iteration }}' type="textarea"
+                                                                class="form-control form-control-sm"
+                                                                name='parameters[]'>
+                                                            @foreach($product->conf_params as $configure_parameter)
+                                                                <option value="{{ $configure_parameter->id }}">{{ $configure_parameter->name }}</option>
+                                                            @endforeach
+                                                        </select>
                                                     @endif
                                                 </div>
                                             </div>

@@ -6,10 +6,9 @@ use App\Models\Classes\ParameterClass;
 use App\Models\Entities\Document;
 use App\Models\Entities\Metric;
 use App\Models\Entities\Parameter;
-use App\Models\Entities\ValueType;
 use App\Models\Entities\Product;
+use App\Models\Entities\ValueType;
 use Illuminate\Routing\Controller;
-use Illuminate\Support\Facades\Session;
 
 class ParameterWebController extends Controller
 {

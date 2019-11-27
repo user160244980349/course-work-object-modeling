@@ -35,7 +35,9 @@
                                         <tr>
                                             <th scope="col">#</th>
                                             <th scope="col">Название</th>
-                                            <th scope="col"><div class="d-flex justify-content-end">Действия</div></th>
+                                            <th scope="col">
+                                                <div class="d-flex justify-content-end">Действия</div>
+                                            </th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -47,8 +49,10 @@
                                                     <div class="d-flex justify-content-end">
                                                         <form action="{{ route('build.step1') }}" method="post">
                                                             @csrf
-                                                            <input type="hidden" value="{{ $product->id }}" name="product">
-                                                            <input type="submit" class="btn btn-sm btn-outline-primary" value="Выбрать">
+                                                            <input type="hidden" value="{{ $product->id }}"
+                                                                   name="product">
+                                                            <input type="submit" class="btn btn-sm btn-outline-primary"
+                                                                   value="Выбрать">
                                                         </form>
                                                     </div>
                                                 </td>
@@ -58,10 +62,10 @@
                                     </table>
                                 @endif
 
+                            </div>
+                        </div>
+
                     </div>
                 </div>
-
             </div>
-        </div>
-    </div>
 @endsection

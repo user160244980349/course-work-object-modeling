@@ -26,22 +26,25 @@
                             @csrf
 
                             @foreach($product->conf_params as $parameter)
-                            <div class="form-group">
-                                <div class="row">
-                                    <div class="col">
-                                        <label for="parameters{{ $loop->iteration }}" class="control-label">{{ $parameter->name }}</label>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col">
+                                            <label for="parameters{{ $loop->iteration }}"
+                                                   class="control-label">{{ $parameter->name }}</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <select class="form-control form-control-sm"
+                                                    name="parameters[{{ $parameter->id }}]"
+                                                    id="parameters{{ $loop->iteration }}">
+                                                @foreach($parameter->strings as $value)
+                                                    <option value="{{ $value->id }}">{{ $value->value }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col">
-                                        <select class="form-control form-control-sm" name="parameters[{{ $parameter->id }}]" id="parameters{{ $loop->iteration }}">
-                                            @foreach($parameter->strings as $value)
-                                                <option value="{{ $value->id }}">{{ $value->value }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
                             @endforeach
 
                             <div class="row">

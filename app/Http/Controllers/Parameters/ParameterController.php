@@ -2,16 +2,14 @@
 
 namespace App\Http\Controllers\Parameters;
 
+use App\Http\Controllers\Controller;
 use App\Models\Classes\ParameterClass;
 use App\Models\Entities\Document;
 use App\Models\Entities\Metric;
 use App\Models\Entities\Parameter;
-use App\Http\Controllers\Controller;
-use App\Models\Entities\ValueType;
 use App\Models\Entities\Product;
+use App\Models\Entities\ValueType;
 use Illuminate\Http\Request;
-use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Session;
 
 class ParameterController extends Controller
 {
@@ -23,6 +21,32 @@ class ParameterController extends Controller
         return redirect()->route('web.documents.read', ['prod_id' => $prod_id, 'doc_id' => $doc_id]);
     }
 
+    public function create(Request $request, $id, $owner_class)
+    {
+        $owner = $owner_class::find($id);
+        $type = ValueType::find($request->input('type'));
+        $class = ParameterClass::find(1);
+        $metric = Metric::find($request->input('metric'));
+
+        $parameter = new Parameter([
+            'name' => $request->input('name'),
+        ]);
+
+        $value = $type->value_model::create([
+            'value' => str_replace(',', '.', $request->input('value')),
+        ]);
+
+        $parameter->metric()->associate($metric);
+        $parameter->valuable()->associate($value);
+        $parameter->parametrized()->associate($owner);
+        $parameter->parameter_type()->associate($type);
+        $parameter->parameter_class()->associate($class);
+
+        $parameter->save();
+
+        return;
+    }
+
     public function deleteInDoc($prod_id, $doc_id, $id)
     {
         $this->delete($doc_id, $id, Document::class);
@@ -30,11 +54,30 @@ class ParameterController extends Controller
         return redirect()->route('web.documents.read', ['prod_id' => $prod_id, 'doc_id' => $doc_id]);
     }
 
+    public function delete($owner_id, $id, $owner_class)
+    {
+        $parameter = $owner_class::find($owner_id)->parameters()->find($id);
+
+        $parameter->valuable()->delete();
+        $parameter->delete();
+
+        return;
+    }
+
     public function updateInDoc(Request $request, $prod_id, $doc_id, $id)
     {
         $this->update($request, $doc_id, $id, Document::class);
 
         return redirect()->route('web.documents.parameter.read', ['prod_id' => $prod_id, 'doc_id' => $doc_id, 'id' => $id]);
+    }
+
+    public function update(Request $request, $owner_id, $id, $owner_class)
+    {
+        $value = $owner_class::find($owner_id)->parameters()->find($id)->valuable;
+        $value->value = $request->input('value');
+        $value->save();
+
+        return;
     }
 
     public function createInProd(Request $request, $prod_id)
@@ -56,51 +99,6 @@ class ParameterController extends Controller
         $this->update($request, $prod_id, $id, Product::class);
 
         return redirect()->route('web.products.parameter.read', ['prod_id' => $prod_id, 'id' => $id]);
-    }
-
-    public function create(Request $request, $id, $owner_class)
-    {
-        $owner = $owner_class::find($id);
-        $type = ValueType::find($request->input('type'));
-        $class = ParameterClass::find(1);
-        $metric = Metric::find($request->input('metric'));
-
-        $parameter = new Parameter([
-            'name' => $request->input('name'),
-        ]);
-
-        $value = $type->value_model::create([
-            'value' => str_replace(',','.', $request->input('value')),
-        ]);
-
-        $parameter->metric()->associate($metric);
-        $parameter->valuable()->associate($value);
-        $parameter->parametrized()->associate($owner);
-        $parameter->parameter_type()->associate($type);
-        $parameter->parameter_class()->associate($class);
-
-        $parameter->save();
-
-        return;
-    }
-
-    public function delete($owner_id, $id, $owner_class)
-    {
-        $parameter = $owner_class::find($owner_id)->parameters()->find($id);
-
-        $parameter->valuable()->delete();
-        $parameter->delete();
-
-        return;
-    }
-
-    public function update(Request $request, $owner_id, $id, $owner_class)
-    {
-        $value = $owner_class::find($owner_id)->parameters()->find($id)->valuable;
-        $value->value = $request->input('value');
-        $value->save();
-
-        return;
     }
 
 }

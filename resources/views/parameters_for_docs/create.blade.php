@@ -24,7 +24,8 @@
 
                         </div>
 
-                        <form action="{{ route('documents.parameter.create', ['prod_id' => $product->id, 'doc_id' => $document->id]) }}" method="post">
+                        <form action="{{ route('documents.parameter.create', ['prod_id' => $product->id, 'doc_id' => $document->id]) }}"
+                              method="post">
                             @csrf
 
                             <div class="row">
@@ -40,9 +41,10 @@
 
                                         <div class="row">
                                             <div class="col">
-                                                <select id="class" type="select" class="form-control form-control-sm" name="class" disabled>
+                                                <select id="class" type="select" class="form-control form-control-sm"
+                                                        name="class" disabled>
                                                     <option
-                                                        value="{{ $class->id }}">{{ $class->name }}</option>
+                                                            value="{{ $class->id }}">{{ $class->name }}</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -59,8 +61,9 @@
 
                                         <div class="row">
                                             <div class="col">
-                                                <input id="name" type="text" class="form-control form-control-sm" name="name"
-                                                       value="" required />
+                                                <input id="name" type="text" class="form-control form-control-sm"
+                                                       name="name"
+                                                       value="" required/>
                                             </div>
                                         </div>
                                     </div>
@@ -75,10 +78,11 @@
 
                                         <div class="row">
                                             <div class="col">
-                                                <select id="type" type="select" class="form-control form-control-sm" name="type" required>
+                                                <select id="type" type="select" class="form-control form-control-sm"
+                                                        name="type" required>
                                                     @foreach($types as $type)
                                                         <option
-                                                            value="{{ $type->id }}">{{ $type->name }}</option>
+                                                                value="{{ $type->id }}">{{ $type->name }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -96,8 +100,9 @@
 
                                         <div class="row">
                                             <div class="col">
-                                                <input id="value" type="text" class="form-control form-control-sm" name="value"
-                                                       value="" required />
+                                                <input id="value" type="text" class="form-control form-control-sm"
+                                                       name="value"
+                                                       value="" required/>
                                             </div>
                                         </div>
 
@@ -113,11 +118,13 @@
 
                                         <div class="row">
                                             <div class="col">
-                                                <select id="metric" type="select" class="form-control form-control-sm" name="metric"
+                                                <select id="metric" type="select" class="form-control form-control-sm"
+                                                        name="metric"
                                                         required>
                                                     @foreach ($metrics as $metric)
                                                         <option
-                                                            value="{{ $metric->id }}">{{ $metric->name }}, {{ $metric->extended_name }}</option>
+                                                                value="{{ $metric->id }}">{{ $metric->name }}
+                                                            , {{ $metric->extended_name }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>

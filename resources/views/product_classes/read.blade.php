@@ -36,7 +36,8 @@
 
                                     <div class="row">
                                         <div class="col">
-                                            <input id="name" type="text" class="form-control form-control-sm" name="name"
+                                            <input id="name" type="text" class="form-control form-control-sm"
+                                                   name="name"
                                                    value="{{ $class->name }}" disabled/>
                                         </div>
                                     </div>
@@ -46,17 +47,21 @@
                                 <div class="form-group form-check">
                                     <div class="row">
                                         <div class="col">
-                                            <input id="terminal_in" type="checkbox" class="form-check-input" name="terminal_in"
-                                               @if($class->terminal_in) checked @endif disabled />
-                                            <label for="terminal_in" class="form-check-label">Терминальный по наполнению</label>
+                                            <input id="terminal_in" type="checkbox" class="form-check-input"
+                                                   name="terminal_in"
+                                                   @if($class->terminal_in) checked @endif disabled/>
+                                            <label for="terminal_in" class="form-check-label">Терминальный по
+                                                наполнению</label>
                                         </div>
                                     </div>
 
                                     <div class="row">
                                         <div class="col">
-                                            <input id="terminal_out" type="checkbox" class="form-check-input" name="terminal_out"
-                                               @if($class->terminal_out) checked @endif disabled />
-                                            <label for="terminal_out" class="form-check-label">Терминальный по включению</label>
+                                            <input id="terminal_out" type="checkbox" class="form-check-input"
+                                                   name="terminal_out"
+                                                   @if($class->terminal_out) checked @endif disabled/>
+                                            <label for="terminal_out" class="form-check-label">Терминальный по
+                                                включению</label>
                                         </div>
                                     </div>
                                 </div>

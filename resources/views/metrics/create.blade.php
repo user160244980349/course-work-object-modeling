@@ -33,12 +33,14 @@
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col">
-                                                <label for="name" class="control-label">Наименование нормы расчета</label>
+                                                <label for="name" class="control-label">Наименование нормы
+                                                    расчета</label>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col">
-                                                <input id="name" type="text" class="form-control form-control-sm" name="name" required
+                                                <input id="name" type="text" class="form-control form-control-sm"
+                                                       name="name" required
                                                        autofocus/>
                                             </div>
                                         </div>
@@ -47,12 +49,15 @@
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col">
-                                                <label for="extended_name" class="control-label">Полное наименование</label>
+                                                <label for="extended_name" class="control-label">Полное
+                                                    наименование</label>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col">
-                                                <input id="extended_name" type="text" class="form-control form-control-sm" name="extended_name" required
+                                                <input id="extended_name" type="text"
+                                                       class="form-control form-control-sm" name="extended_name"
+                                                       required
                                                        autofocus/>
                                             </div>
                                         </div>

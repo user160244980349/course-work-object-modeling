@@ -40,7 +40,8 @@
 
                                         <div class="row">
                                             <div class="col">
-                                                <input id="name" class="text form-control" name="name" value="Предикат конфигурирования" autofocus />
+                                                <input id="name" class="text form-control" name="name"
+                                                       value="Предикат конфигурирования" autofocus/>
                                             </div>
                                         </div>
 
@@ -50,13 +51,16 @@
 
                                         <div class="row">
                                             <div class="col">
-                                                <label for="expression" class="control-label">Логическое выражение</label>
+                                                <label for="expression" class="control-label">Логическое
+                                                    выражение</label>
                                             </div>
                                         </div>
 
                                         <div class="row">
                                             <div class="col">
-                                                <textarea spellcheck="false" style="resize:none" id="expression" type="textarea" class="form-control" name="expression" required>{a} + {b} * {c}</textarea>
+                                                <textarea spellcheck="false" style="resize:none" id="expression"
+                                                          type="textarea" class="form-control" name="expression"
+                                                          required>{a} + {b} * {c}</textarea>
                                             </div>
                                         </div>
 

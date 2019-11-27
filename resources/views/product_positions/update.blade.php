@@ -42,8 +42,9 @@
 
                                         <div class="row">
                                             <div class="col">
-                                                <select id="product" class="form-control form-control-sm" name="product" disabled>
-                                                    <option value="{{ $position->content->id }}" >{{ $position->content->name }}</option>
+                                                <select id="product" class="form-control form-control-sm" name="product"
+                                                        disabled>
+                                                    <option value="{{ $position->content->id }}">{{ $position->content->name }}</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -60,7 +61,8 @@
 
                                         <div class="row">
                                             <div class="col">
-                                                <input id="count" type="text" class="form-control form-control-sm" name="count" value="{{ $position->valuable->value }}"
+                                                <input id="count" type="text" class="form-control form-control-sm"
+                                                       name="count" value="{{ $position->valuable->value }}"
                                                        autofocus/>
                                             </div>
                                         </div>
@@ -69,7 +71,8 @@
 
                                     <div class="row">
                                         <div class="col">
-                                            <input class="btn btn-sm btn-primary" type="submit" name="" value="Сохранить"/>
+                                            <input class="btn btn-sm btn-primary" type="submit" name=""
+                                                   value="Сохранить"/>
                                         </div>
                                     </div>
 

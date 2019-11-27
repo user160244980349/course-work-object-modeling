@@ -3,11 +3,8 @@
 namespace App\Http\Controllers\ConfigurePositions;
 
 use App\Http\Controllers\Controller;
-use App\Models\Classes\DocumentClass;
-use App\Models\Classes\ParameterClass;
 use App\Models\Entities\ConfigureParameter;
 use App\Models\Entities\FormalParameter;
-use App\Models\Entities\Metric;
 use App\Models\Entities\Predicate;
 use App\Models\Entities\PredicateInstance;
 use App\Models\Entities\Product;
@@ -15,7 +12,6 @@ use App\Models\Entities\ProductPosition;
 use App\Models\ParameterValues\ConfigureString;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
-use App\Models\Entities\Document;
 use Illuminate\Support\Facades\Session;
 
 class ConfigurePositionsController extends Controller

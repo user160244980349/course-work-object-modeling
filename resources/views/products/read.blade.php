@@ -43,9 +43,10 @@
 
                                     <div class="row">
                                         <div class="col">
-                                            <select id="class" type="select" class="form-control form-control-sm" name="class" disabled>
+                                            <select id="class" type="select" class="form-control form-control-sm"
+                                                    name="class" disabled>
                                                 <option
-                                                    value="{{ $product->product_class->id }}">{{ $product->product_class->name }}</option>
+                                                        value="{{ $product->product_class->id }}">{{ $product->product_class->name }}</option>
                                             </select>
                                         </div>
                                     </div>
@@ -62,7 +63,8 @@
 
                                     <div class="row">
                                         <div class="col">
-                                            <input id="name" type="text" class="form-control form-control-sm" name="name"
+                                            <input id="name" type="text" class="form-control form-control-sm"
+                                                   name="name"
                                                    value="{{ $product->name }}" disabled/>
                                         </div>
                                     </div>
@@ -79,9 +81,10 @@
 
                                     <div class="row">
                                         <div class="col">
-                                            <select id="type" type="select" class="form-control form-control-sm" name="type"
+                                            <select id="type" type="select" class="form-control form-control-sm"
+                                                    name="type"
                                                     disabled>
-                                                    <option
+                                                <option
                                                         value="{{ $product->value_type->id }}">{{ $product->value_type->name }}</option>
                                             </select>
                                         </div>
@@ -99,10 +102,12 @@
 
                                     <div class="row">
                                         <div class="col">
-                                            <select id="metric" type="select" class="form-control form-control-sm" name="metric"
+                                            <select id="metric" type="select" class="form-control form-control-sm"
+                                                    name="metric"
                                                     disabled>
                                                 <option
-                                                    value="{{ $product->metric->id }}">{{ $product->metric->name }}, {{ $product->metric->extended_name }}</option>
+                                                        value="{{ $product->metric->id }}">{{ $product->metric->name }}
+                                                    , {{ $product->metric->extended_name }}</option>
                                             </select>
                                         </div>
                                     </div>
@@ -166,42 +171,45 @@
                                         @else
                                             <table class="table table-sm mb-0">
                                                 <thead>
-                                                    <tr>
-                                                        <th scope="col">#</th>
-                                                        <th scope="col">Название</th>
-                                                        <th scope="col">Значение</th>
-                                                        <th scope="col">Норма</th>
-                                                        <th scope="col"><div class="d-flex justify-content-end">Действия</div></th>
-                                                    </tr>
+                                                <tr>
+                                                    <th scope="col">#</th>
+                                                    <th scope="col">Название</th>
+                                                    <th scope="col">Значение</th>
+                                                    <th scope="col">Норма</th>
+                                                    <th scope="col">
+                                                        <div class="d-flex justify-content-end">Действия</div>
+                                                    </th>
+                                                </tr>
                                                 </thead>
                                                 <tbody>
-                                                    @foreach ($product->parameters as $parameter)
-                                                        <tr>
-                                                            <th scope="row">{{ $loop->iteration }}</th>
-                                                            <td>{{ $parameter->name }}</td>
-                                                            <td>{{ $parameter->valuable->value }}</td>
-                                                            <td>{{ $parameter->metric->name }}</td>
-                                                            <td>
-                                                                <div class="d-flex justify-content-end">
+                                                @foreach ($product->parameters as $parameter)
+                                                    <tr>
+                                                        <th scope="row">{{ $loop->iteration }}</th>
+                                                        <td>{{ $parameter->name }}</td>
+                                                        <td>{{ $parameter->valuable->value }}</td>
+                                                        <td>{{ $parameter->metric->name }}</td>
+                                                        <td>
+                                                            <div class="d-flex justify-content-end">
 
-                                                                    <form
+                                                                <form
                                                                         action="{{ route('products.parameter.delete', ['prod_id' => $product->id, 'id' => $parameter->id]) }}"
                                                                         method="post">
-                                                                        @csrf
-                                                                        @method('delete')
+                                                                    @csrf
+                                                                    @method('delete')
 
-                                                                        <div class="btn-group-sm">
-                                                                            <a class="btn btn-outline-primary"
-                                                                               href="{{ route('web.products.parameter.read', ['prod_id' => $product->id, 'id' => $parameter->id]) }}">Подробнее</a>
-                                                                            <input type="submit" class="btn btn-outline-danger"
-                                                                                   value="Удалить"/>
-                                                                        </div>
-                                                                    </form>
+                                                                    <div class="btn-group-sm">
+                                                                        <a class="btn btn-outline-primary"
+                                                                           href="{{ route('web.products.parameter.read', ['prod_id' => $product->id, 'id' => $parameter->id]) }}">Подробнее</a>
+                                                                        <input type="submit"
+                                                                               class="btn btn-outline-danger"
+                                                                               value="Удалить"/>
+                                                                    </div>
+                                                                </form>
 
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-                                                    @endforeach
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
                                                 </tbody>
                                             </table>
                                         @endif
@@ -247,25 +255,27 @@
                                         @else
                                             <table class="table table-sm mb-0">
                                                 <thead>
-                                                    <tr>
-                                                        <th scope="col">#</th>
-                                                        <th scope="col">Название</th>
-                                                        <th scope="col"><div class="d-flex justify-content-end">Действия</div></th>
-                                                    </tr>
+                                                <tr>
+                                                    <th scope="col">#</th>
+                                                    <th scope="col">Название</th>
+                                                    <th scope="col">
+                                                        <div class="d-flex justify-content-end">Действия</div>
+                                                    </th>
+                                                </tr>
                                                 </thead>
                                                 <tbody>
-                                                    @foreach ($product->documents as $document)
-                                                        <tr>
-                                                            <th scope="row">{{ $loop->iteration }}</th>
-                                                            <td>{{ $document->name }}</td>
-                                                            <td>
-                                                                <div class="d-flex justify-content-end">
-                                                                    <a class="btn btn-sm btn-outline-primary"
-                                                                       href="{{ route('web.documents.read', ['prod_id' => $product->id, 'id' => $document->id]) }}">Подробнее</a>
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-                                                    @endforeach
+                                                @foreach ($product->documents as $document)
+                                                    <tr>
+                                                        <th scope="row">{{ $loop->iteration }}</th>
+                                                        <td>{{ $document->name }}</td>
+                                                        <td>
+                                                            <div class="d-flex justify-content-end">
+                                                                <a class="btn btn-sm btn-outline-primary"
+                                                                   href="{{ route('web.documents.read', ['prod_id' => $product->id, 'id' => $document->id]) }}">Подробнее</a>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
                                                 </tbody>
                                             </table>
                                         @endif
@@ -277,8 +287,8 @@
                     </div>
                 </div>
 
-                @if($product->product_class->terminal_in == 0)
-                    <!-- FORTH CARD FOR STRUCTURE -->
+            @if($product->product_class->terminal_in == 0)
+                <!-- FORTH CARD FOR STRUCTURE -->
                     <div class="card mb-3">
                         <div class="card-body">
 
@@ -291,7 +301,8 @@
                                 <div class="col d-flex flex-row-reverse">
                                     <div class="btn-group-sm">
                                         <a class="btn btn-primary"
-                                           href="{{ route('web.products.configure.positions.index', ['prod_id' => $product->id]) }}">Конфигурируемые позиции</a>
+                                           href="{{ route('web.products.configure.positions.index', ['prod_id' => $product->id]) }}">Конфигурируемые
+                                            позиции</a>
                                         <a class="btn btn-success"
                                            href="{{ route('web.products.positions.create', ['prod_id' => $product->id]) }}">Добавить</a>
                                     </div>
@@ -317,36 +328,41 @@
                                                         <th scope="col">Название</th>
                                                         <th scope="col">Количество</th>
                                                         <th scope="col">Норма</th>
-                                                        <th scope="col"><div class="d-flex justify-content-end">Действия</div></th>
+                                                        <th scope="col">
+                                                            <div class="d-flex justify-content-end">Действия</div>
+                                                        </th>
                                                     </tr>
                                                     </thead>
                                                     <tbody>
-                                                        @foreach ($product->positions as $position)
-                                                            <tr>
-                                                                <th scope="row">{{ $loop->iteration }}</th>
-                                                                <td><a href="{{ route('web.products.read', ['id' => $position->content->id])  }}">{{ $position->content->name }}</a></td>
-                                                                <td>{{ $position->valuable->value }}</td>
-                                                                <td>{{ $position->content->metric->name }}</td>
-                                                                <td>
-                                                                    <div class="d-flex justify-content-end">
-                                                                        <form
+                                                    @foreach ($product->positions as $position)
+                                                        <tr>
+                                                            <th scope="row">{{ $loop->iteration }}</th>
+                                                            <td>
+                                                                <a href="{{ route('web.products.read', ['id' => $position->content->id])  }}">{{ $position->content->name }}</a>
+                                                            </td>
+                                                            <td>{{ $position->valuable->value }}</td>
+                                                            <td>{{ $position->content->metric->name }}</td>
+                                                            <td>
+                                                                <div class="d-flex justify-content-end">
+                                                                    <form
                                                                             action="{{ route('products.positions.delete', ['prod_id' => $product->id, 'id' => $position->id]) }}"
                                                                             method="post">
-                                                                            @csrf
-                                                                            @method('delete')
+                                                                        @csrf
+                                                                        @method('delete')
 
-                                                                            <div class="btn-group-sm">
-                                                                                <a class="btn btn-outline-primary"
-                                                                                   href="{{ route('web.products.positions.read', ['prod_id' => $product->id, 'id' => $position->id]) }}">Подробнее</a>
-                                                                                <input type="submit" class="btn btn-outline-danger"
-                                                                                       value="Удалить"/>
-                                                                            </div>
+                                                                        <div class="btn-group-sm">
+                                                                            <a class="btn btn-outline-primary"
+                                                                               href="{{ route('web.products.positions.read', ['prod_id' => $product->id, 'id' => $position->id]) }}">Подробнее</a>
+                                                                            <input type="submit"
+                                                                                   class="btn btn-outline-danger"
+                                                                                   value="Удалить"/>
+                                                                        </div>
 
-                                                                        </form>
-                                                                    </div>
-                                                                </td>
-                                                            </tr>
-                                                        @endforeach
+                                                                    </form>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach
                                                     </tbody>
                                                 </table>
                                             @endif
@@ -395,7 +411,9 @@
                                                     <tr>
                                                         <th scope="col">#</th>
                                                         <th scope="col">Название</th>
-                                                        <th scope="col"><div class="d-flex justify-content-end">Действия</div></th>
+                                                        <th scope="col">
+                                                            <div class="d-flex justify-content-end">Действия</div>
+                                                        </th>
                                                     </tr>
                                                     </thead>
                                                     <tbody>
@@ -407,14 +425,16 @@
                                                                 <div class="d-flex justify-content-end">
 
                                                                     <form
-                                                                        action="{{ route('products.configure.parameters.delete', ['prod_id' => $product->id, 'id' => $param->id]) }}"
-                                                                        method="post">
+                                                                            action="{{ route('products.configure.parameters.delete', ['prod_id' => $product->id, 'id' => $param->id]) }}"
+                                                                            method="post">
                                                                         @csrf
                                                                         @method('delete')
 
                                                                         <div class="btn-group-sm">
-                                                                            <a class="btn btn-outline-primary" href="{{ route('web.products.configure.parameters.read', ['prod_id' => $product->id, 'id' => $param->id]) }}">Подробнее</a>
-                                                                            <input type="submit" class="btn btn-outline-danger"
+                                                                            <a class="btn btn-outline-primary"
+                                                                               href="{{ route('web.products.configure.parameters.read', ['prod_id' => $product->id, 'id' => $param->id]) }}">Подробнее</a>
+                                                                            <input type="submit"
+                                                                                   class="btn btn-outline-danger"
                                                                                    value="Удалить"/>
                                                                         </div>
 

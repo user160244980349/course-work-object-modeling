@@ -3,8 +3,6 @@
 namespace App\Http\Controllers\ProductPositions;
 
 use App\Http\Controllers\Controller;
-use App\Models\Classes\DocumentClass;
-use App\Models\Entities\Document;
 use App\Models\Entities\Product;
 use App\Models\Entities\ProductPosition;
 

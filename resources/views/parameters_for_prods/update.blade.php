@@ -17,13 +17,15 @@
                             <div class="col-md-3 d-flex justify-content-end">
                                 <div class="btn-group-sm">
                                     <a class="btn btn-primary"
-                                       href="{{ route('web.products.parameter.read', ['prod_id' => $product->id, 'id' => $parameter->id]) }}">Отменить изменения</a>
+                                       href="{{ route('web.products.parameter.read', ['prod_id' => $product->id, 'id' => $parameter->id]) }}">Отменить
+                                        изменения</a>
                                 </div>
                             </div>
 
                         </div>
 
-                        <form action="{{ route('products.parameter.update', ['prod_id' => $product->id, 'id' => $parameter->id]) }}" method="post">
+                        <form action="{{ route('products.parameter.update', ['prod_id' => $product->id, 'id' => $parameter->id]) }}"
+                              method="post">
                             @csrf
                             @method('put')
 
@@ -40,9 +42,10 @@
 
                                         <div class="row">
                                             <div class="col">
-                                                <select id="class" type="select" class="form-control form-control-sm" name="class" disabled>
+                                                <select id="class" type="select" class="form-control form-control-sm"
+                                                        name="class" disabled>
                                                     <option
-                                                        value="{{ $parameter->parameter_class->id }}">{{ $parameter->parameter_class->name }}</option>
+                                                            value="{{ $parameter->parameter_class->id }}">{{ $parameter->parameter_class->name }}</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -59,7 +62,8 @@
 
                                         <div class="row">
                                             <div class="col">
-                                                <input id="name" type="text" class="form-control form-control-sm" name="name"
+                                                <input id="name" type="text" class="form-control form-control-sm"
+                                                       name="name"
                                                        value="{{ $parameter->name }}" disabled/>
                                             </div>
                                         </div>
@@ -76,9 +80,10 @@
 
                                         <div class="row">
                                             <div class="col">
-                                                <select id="type" type="select" class="form-control form-control-sm" name="type" disabled>
+                                                <select id="type" type="select" class="form-control form-control-sm"
+                                                        name="type" disabled>
                                                     <option
-                                                        value="{{ $parameter->parameter_type->id }}">{{ $parameter->parameter_type->name }}</option>
+                                                            value="{{ $parameter->parameter_type->id }}">{{ $parameter->parameter_type->name }}</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -95,8 +100,9 @@
 
                                         <div class="row">
                                             <div class="col">
-                                                <input id="value" type="text" class="form-control form-control-sm" name="value"
-                                                       value="{{ $parameter->valuable->value }}" />
+                                                <input id="value" type="text" class="form-control form-control-sm"
+                                                       name="value"
+                                                       value="{{ $parameter->valuable->value }}"/>
                                             </div>
                                         </div>
 
@@ -112,10 +118,12 @@
 
                                         <div class="row">
                                             <div class="col">
-                                                <select id="metric" type="select" class="form-control form-control-sm" name="metric"
+                                                <select id="metric" type="select" class="form-control form-control-sm"
+                                                        name="metric"
                                                         disabled>
                                                     <option
-                                                        value="{{ $parameter->metric->id }}">{{ $parameter->metric->name }}, {{ $parameter->metric->extended_name }}</option>
+                                                            value="{{ $parameter->metric->id }}">{{ $parameter->metric->name }}
+                                                        , {{ $parameter->metric->extended_name }}</option>
                                                 </select>
                                             </div>
                                         </div>

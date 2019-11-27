@@ -16,14 +16,16 @@
 
                             <div class="col d-flex justify-content-end">
                                 <div class="btn-group-sm">
-                                    <a class="btn btn-primary" href="{{ route('web.products.read', ['id' => $product->id]) }}">Назад</a>
+                                    <a class="btn btn-primary"
+                                       href="{{ route('web.products.read', ['id' => $product->id]) }}">Назад</a>
                                     <a class="btn btn-primary" href="{{ route('home') }}">На главную</a>
                                 </div>
                             </div>
 
                         </div>
 
-                        <form role="form" method="post" action="{{ route('documents.create', ['prod_id' => $product->id]) }}">
+                        <form role="form" method="post"
+                              action="{{ route('documents.create', ['prod_id' => $product->id]) }}">
                             @csrf
 
 
@@ -46,11 +48,12 @@
 
                                         <div class="row">
                                             <div class="col">
-                                                <select id="class" type="select" class="form-control form-control-sm" name="class"
+                                                <select id="class" type="select" class="form-control form-control-sm"
+                                                        name="class"
                                                         required>
                                                     @foreach ($classes as $class)
                                                         <option
-                                                            value="{{ $class->id }}">{{ $class->name }}</option>
+                                                                value="{{ $class->id }}">{{ $class->name }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -68,7 +71,8 @@
 
                                         <div class="row">
                                             <div class="col">
-                                                <input id="name" type="text" class="form-control form-control-sm" name="name" required
+                                                <input id="name" type="text" class="form-control form-control-sm"
+                                                       name="name" required
                                                        autofocus/>
                                             </div>
                                         </div>

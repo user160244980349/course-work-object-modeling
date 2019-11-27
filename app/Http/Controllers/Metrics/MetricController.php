@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Metrics;
 
 use App\Http\Controllers\Controller;
-use App\Models\Classes\DocumentClass;
 use App\Models\Entities\Metric;
 use Illuminate\Http\Request;
 

@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Documents;
 
 use App\Http\Controllers\Controller;
 use App\Models\Classes\DocumentClass;
+use App\Models\Entities\Document;
 use App\Models\Entities\Product;
 use Illuminate\Http\Request;
-use App\Models\Entities\Document;
 
 class DocumentController extends Controller
 {

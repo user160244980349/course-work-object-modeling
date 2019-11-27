@@ -2,7 +2,6 @@
 
 namespace App\Models\Entities;
 
-use App\Models\Classes\DocumentClass;
 use Illuminate\Database\Eloquent\Model;
 
 class Document extends Model

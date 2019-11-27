@@ -16,14 +16,16 @@
 
                             <div class="col d-flex justify-content-end">
                                 <div class="btn-group-sm">
-                                    <a class="btn btn-primary" href="{{ route('web.products.read', ['id' => $product->id]) }}">Назад</a>
+                                    <a class="btn btn-primary"
+                                       href="{{ route('web.products.read', ['id' => $product->id]) }}">Назад</a>
                                     <a class="btn btn-primary" href="{{ route('home') }}">На главную</a>
                                 </div>
                             </div>
 
                         </div>
 
-                        <form role="form" method="post" action="{{ route('products.configure.parameters.create', ['prod_id' => $product->id]) }}">
+                        <form role="form" method="post"
+                              action="{{ route('products.configure.parameters.create', ['prod_id' => $product->id]) }}">
                             @csrf
 
                             <div class="row">
@@ -39,10 +41,11 @@
 
                                         <div class="row">
                                             <div class="col">
-                                                <select id="class" type="select" class="form-control form-control-sm" name="class"
+                                                <select id="class" type="select" class="form-control form-control-sm"
+                                                        name="class"
                                                         disabled>
                                                     <option
-                                                        value="{{ $class->id }}">{{ $class->name }}</option>
+                                                            value="{{ $class->id }}">{{ $class->name }}</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -59,7 +62,8 @@
 
                                         <div class="row">
                                             <div class="col">
-                                                <input id="name" type="text" class="form-control form-control-sm" name="name" required
+                                                <input id="name" type="text" class="form-control form-control-sm"
+                                                       name="name" required
                                                        autofocus/>
                                             </div>
                                         </div>
@@ -76,11 +80,13 @@
 
                                         <div class="row">
                                             <div class="col">
-                                                <select id="metric" type="select" class="form-control form-control-sm" name="metric"
+                                                <select id="metric" type="select" class="form-control form-control-sm"
+                                                        name="metric"
                                                         required>
                                                     @foreach ($metrics as $metric)
                                                         <option
-                                                            value="{{ $metric->id }}">{{ $metric->name }}, {{ $metric->extended_name }}</option>
+                                                                value="{{ $metric->id }}">{{ $metric->name }}
+                                                            , {{ $metric->extended_name }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>

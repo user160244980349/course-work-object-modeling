@@ -88,7 +88,6 @@ Route::group(['middleware' => 'auth'], function () {
         Route::delete('delete/{id}', 'Products\ProductController@delete')->name('products.delete');
 
 
-
         Route::group(['prefix' => '{prod_id}/documents'], function () {
 
             Route::get('index', 'Documents\DocumentWebController@index')->name('web.documents.index');

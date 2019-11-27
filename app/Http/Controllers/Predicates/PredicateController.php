@@ -2,16 +2,9 @@
 
 namespace App\Http\Controllers\Predicates;
 
-use App\Models\Entities\ConfigureParameter;
-use App\Models\Entities\FormalParameter;
-use App\Models\Entities\Parameter;
 use App\Models\Entities\Predicate;
-use App\Models\Entities\Product;
-use App\Models\ParameterValues\ConfigureString;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use Illuminate\Support\Facades\Session;
 
 class PredicateController extends Controller
 {

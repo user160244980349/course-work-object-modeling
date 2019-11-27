@@ -17,7 +17,8 @@
 
                             <div class="col d-flex justify-content-end">
                                 <div class="btn-group-sm">
-                                    <a class="btn btn-primary" href="{{ route('web.products.read', ['id' => $product->id]) }}">Назад</a>
+                                    <a class="btn btn-primary"
+                                       href="{{ route('web.products.read', ['id' => $product->id]) }}">Назад</a>
                                     <a class="btn btn-primary" href="{{ route('home') }}">На главную</a>
                                 </div>
                             </div>
@@ -37,9 +38,10 @@
 
                                     <div class="row">
                                         <div class="col">
-                                            <select id="class" type="select" class="form-control form-control-sm" name="class" disabled>
+                                            <select id="class" type="select" class="form-control form-control-sm"
+                                                    name="class" disabled>
                                                 <option
-                                                    value="{{ $parameter->parameter_class->id }}">{{ $parameter->parameter_class->name }}</option>
+                                                        value="{{ $parameter->parameter_class->id }}">{{ $parameter->parameter_class->name }}</option>
                                             </select>
                                         </div>
                                     </div>
@@ -56,7 +58,8 @@
 
                                     <div class="row">
                                         <div class="col">
-                                            <input id="name" type="text" class="form-control form-control-sm" name="name"
+                                            <input id="name" type="text" class="form-control form-control-sm"
+                                                   name="name"
                                                    value="{{ $parameter->name }}" disabled/>
                                         </div>
                                     </div>
@@ -99,16 +102,18 @@
                                                 <i>Список пуст</i>
                                             </div>
                                         @else
-                                        <table class="table table-sm mb-0">
-                                            <thead>
+                                            <table class="table table-sm mb-0">
+                                                <thead>
                                                 <tr>
                                                     <th scope="col">#</th>
                                                     <th scope="col">Значение</th>
                                                     <th scope="col">Норма</th>
-                                                    <th scope="col"><div class="d-flex justify-content-end">Действия</div></th>
+                                                    <th scope="col">
+                                                        <div class="d-flex justify-content-end">Действия</div>
+                                                    </th>
                                                 </tr>
-                                            </thead>
-                                            <tbody>
+                                                </thead>
+                                                <tbody>
                                                 @foreach ($parameter->strings as $value)
                                                     <tr>
                                                         <th scope="row">{{ $loop->iteration }}</th>
@@ -118,8 +123,8 @@
                                                             <div class="d-flex justify-content-end">
 
                                                                 <form
-                                                                    action="{{ route('products.configure.strings.delete', ['prod_id' => $product->id, 'conf_id' => $parameter->id, 'id' => $value->id]) }}"
-                                                                    method="post">
+                                                                        action="{{ route('products.configure.strings.delete', ['prod_id' => $product->id, 'conf_id' => $parameter->id, 'id' => $value->id]) }}"
+                                                                        method="post">
                                                                     @csrf
                                                                     @method('delete')
 
@@ -133,8 +138,8 @@
                                                         </td>
                                                     </tr>
                                                 @endforeach
-                                            </tbody>
-                                        </table>
+                                                </tbody>
+                                            </table>
                                         @endif
                                     </div>
                                 </div>

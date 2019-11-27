@@ -33,7 +33,8 @@
                                     </div>
                                 </div>
 
-                                <form role="form" method="post" action="{{ route('products.update', ['id' => $product->id]) }}">
+                                <form role="form" method="post"
+                                      action="{{ route('products.update', ['id' => $product->id]) }}">
                                     @csrf
                                     @method('put')
 
@@ -47,7 +48,8 @@
 
                                         <div class="row">
                                             <div class="col">
-                                                <select id="class" type="select" class="form-control form-control-sm" name="class"
+                                                <select id="class" type="select" class="form-control form-control-sm"
+                                                        name="class"
                                                         disabled>
                                                     <option value="{{ $product->product_class->id }}">{{ $product->product_class->name }}</option>
                                                 </select>
@@ -66,7 +68,8 @@
 
                                         <div class="row">
                                             <div class="col">
-                                                <input id="name" type="text" class="form-control form-control-sm" name="name"
+                                                <input id="name" type="text" class="form-control form-control-sm"
+                                                       name="name"
                                                        value="{{ $product->name }}" required/>
                                             </div>
                                         </div>
@@ -83,10 +86,11 @@
 
                                         <div class="row">
                                             <div class="col">
-                                                <select id="type" type="select" class="form-control form-control-sm" name="type"
+                                                <select id="type" type="select" class="form-control form-control-sm"
+                                                        name="type"
                                                         disabled>
                                                     <option
-                                                        value="{{ $product->value_type->id }}">{{ $product->value_type->name }}</option>
+                                                            value="{{ $product->value_type->id }}">{{ $product->value_type->name }}</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -103,10 +107,12 @@
 
                                         <div class="row">
                                             <div class="col">
-                                                <select id="metric" type="select" class="form-control form-control-sm" name="metric"
+                                                <select id="metric" type="select" class="form-control form-control-sm"
+                                                        name="metric"
                                                         disabled>
                                                     <option
-                                                        value="{{ $product->metric->id }}">{{ $product->metric->name }}, {{ $product->metric->extended_name }}</option>
+                                                            value="{{ $product->metric->id }}">{{ $product->metric->name }}
+                                                        , {{ $product->metric->extended_name }}</option>
                                                 </select>
                                             </div>
                                         </div>

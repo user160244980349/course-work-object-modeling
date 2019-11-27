@@ -4,8 +4,6 @@ namespace App\Http\Controllers\Predicates;
 
 use App\Http\Controllers\Controller;
 use App\Models\Entities\Predicate;
-use App\Models\Entities\Product;
-use Illuminate\Support\Facades\Session;
 
 class PredicateWebController extends Controller
 {

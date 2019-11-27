@@ -50,7 +50,7 @@ class Product extends Model
 
     public function inclusions()
     {
-        return $this->hasMany('App\Models\Entities\ProductPosition','position_content_id');
+        return $this->hasMany('App\Models\Entities\ProductPosition', 'position_content_id');
     }
 
     public function predicate_instances()

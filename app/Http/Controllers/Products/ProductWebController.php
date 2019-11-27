@@ -3,13 +3,10 @@
 namespace App\Http\Controllers\Products;
 
 use App\Http\Controllers\Controller;
-use App\Models\Classes\DocumentClass;
 use App\Models\Classes\ProductClass;
-use App\Models\Entities\Document;
 use App\Models\Entities\Metric;
-use App\Models\Entities\Parameter;
-use App\Models\Entities\ValueType;
 use App\Models\Entities\Product;
+use App\Models\Entities\ValueType;
 
 class ProductWebController extends Controller
 {

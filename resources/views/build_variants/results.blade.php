@@ -27,45 +27,46 @@
 
                                 <table class="table table-sm mb-0">
                                     <tbody>
+                                    <tr>
+                                        <th scope="row" colspan="3">Изделие</th>
+                                        <th scope="row" colspan="1">
+                                            <div class="d-flex justify-content-end">
+                                                {{ $product->name }}
+                                            </div>
+                                        </th>
+                                    </tr>
+                                    @if (!isset($levels[1]))
                                         <tr>
-                                            <th scope="row" colspan="3">Изделие</th>
-                                            <th scope="row" colspan="1">
-                                                <div class="d-flex justify-content-end">
-                                                    {{ $product->name }}
-                                                </div>
-                                            </th>
+                                            <td scope="row" colspan="4"><i class="d-flex justify-content-center">Состав
+                                                    изделия пуст</i></td>
                                         </tr>
-                                        @if (!isset($levels[1]))
+                                    @endif
+                                    @foreach ($levels as $level)
+                                        @continue($loop->first)
+                                        <tr>
+                                            <th scope="row" colspan="4">Уровень {{ $loop->index }}</th>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">#</th>
+                                            <th scope="col">Название</th>
+                                            <th scope="col">Количество</th>
+                                            <th scope="col">Норма</th>
+                                        </tr>
+                                        @foreach($level as $product_in_pos)
                                             <tr>
-                                                <td scope="row" colspan="4"><i class="d-flex justify-content-center">Состав изделия пуст</i></td>
+                                                <th scope="row">{{ $loop->iteration }}</th>
+                                                <td>
+                                                    <a href="{{ route('web.products.read', ['id' => $product_in_pos->id]) }}">{{ $product_in_pos->name }}</a>
+                                                </td>
+                                                <td>
+                                                    {{ $product_in_pos->count }}
+                                                </td>
+                                                <td>
+                                                    {{ $product_in_pos->metric->name }}
+                                                </td>
                                             </tr>
-                                        @endif
-                                        @foreach ($levels as $level)
-                                            @continue($loop->first)
-                                            <tr>
-                                                <th scope="row" colspan="4">Уровень {{ $loop->index }}</th>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">#</th>
-                                                <th scope="col">Название</th>
-                                                <th scope="col">Количество</th>
-                                                <th scope="col">Норма</th>
-                                            </tr>
-                                            @foreach($level as $product_in_pos)
-                                                <tr>
-                                                    <th scope="row">{{ $loop->iteration }}</th>
-                                                    <td>
-                                                        <a href="{{ route('web.products.read', ['id' => $product_in_pos->id]) }}">{{ $product_in_pos->name }}</a>
-                                                    </td>
-                                                    <td>
-                                                        {{ $product_in_pos->count }}
-                                                    </td>
-                                                    <td>
-                                                        {{ $product_in_pos->metric->name }}
-                                                    </td>
-                                                </tr>
-                                            @endforeach
                                         @endforeach
+                                    @endforeach
                                     </tbody>
                                 </table>
 

@@ -16,7 +16,8 @@
 
                             <div class="col-md-3 d-flex justify-content-end">
                                 <div class="btn-group-sm">
-                                    <a class="btn btn-sm btn-primary" href="{{ route('web.predicates.index') }}">Назад</a>
+                                    <a class="btn btn-sm btn-primary"
+                                       href="{{ route('web.predicates.index') }}">Назад</a>
                                     <a class="btn btn-primary" href="{{ route('home') }}">На главную</a>
                                 </div>
                             </div>
@@ -36,7 +37,8 @@
 
                                     <div class="row">
                                         <div class="col">
-                                            <input id="name" class="text form-control form-control-sm" name="name" value="{{ $predicate->name }}" disabled/>
+                                            <input id="name" class="text form-control form-control-sm" name="name"
+                                                   value="{{ $predicate->name }}" disabled/>
                                         </div>
                                     </div>
 
@@ -52,8 +54,10 @@
 
                                     <div class="row">
                                         <div class="col">
-                                            <textarea spellcheck="false" style="resize:none" id="expression" type="textarea" class="form-control form-control-sm" name="expression"
-                                                   disabled>{{ $predicate->expression }}</textarea>
+                                            <textarea spellcheck="false" style="resize:none" id="expression"
+                                                      type="textarea" class="form-control form-control-sm"
+                                                      name="expression"
+                                                      disabled>{{ $predicate->expression }}</textarea>
                                         </div>
                                     </div>
 

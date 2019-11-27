@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Products;
 use App\Http\Controllers\Controller;
 use App\Models\Classes\ProductClass;
 use App\Models\Entities\Metric;
-use App\Models\Entities\ValueType;
 use App\Models\Entities\Product;
+use App\Models\Entities\ValueType;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller

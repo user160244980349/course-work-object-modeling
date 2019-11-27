@@ -40,7 +40,8 @@
                                         </div>
                                         <div class="row">
                                             <div class="col">
-                                                <input id="name" type="text" class="form-control form-control-sm" name="name"
+                                                <input id="name" type="text" class="form-control form-control-sm"
+                                                       name="name"
                                                        value="{{ $class->name }}"/>
                                             </div>
                                         </div>

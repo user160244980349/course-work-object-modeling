@@ -24,7 +24,8 @@
 
                         </div>
 
-                        <form role="form" method="post" action="{{ route('documents.update', ['prod_id' => $product->id, 'id' => $document->id]) }}">
+                        <form role="form" method="post"
+                              action="{{ route('documents.update', ['prod_id' => $product->id, 'id' => $document->id]) }}">
                             @csrf
                             @method('put')
 
@@ -47,7 +48,8 @@
 
                                         <div class="row">
                                             <div class="col">
-                                                <select id="class" type="select" class="form-control form-control-sm" name="class"
+                                                <select id="class" type="select" class="form-control form-control-sm"
+                                                        name="class"
                                                         disabled>
                                                     <option value="{{ $document->document_class->id }}">{{ $document->document_class->name }}</option>
                                                 </select>
@@ -66,7 +68,8 @@
 
                                         <div class="row">
                                             <div class="col">
-                                                <input id="name" type="text" class="form-control form-control-sm" name="name"
+                                                <input id="name" type="text" class="form-control form-control-sm"
+                                                       name="name"
                                                        value="{{ $document->name }}" required/>
                                             </div>
                                         </div>

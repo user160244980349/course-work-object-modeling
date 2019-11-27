@@ -42,7 +42,9 @@
                                                     <th scope="col">#</th>
                                                     <th scope="col">Название</th>
                                                     <th scope="col">Выражение</th>
-                                                    <th scope="col"><div class="d-flex justify-content-end">Действия</div></th>
+                                                    <th scope="col">
+                                                        <div class="d-flex justify-content-end">Действия</div>
+                                                    </th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
@@ -63,7 +65,8 @@
                                                                     <div class="btn-group-sm">
                                                                         <a class="btn btn-outline-primary"
                                                                            href="{{ route('web.predicates.read', ['id' => $predicate->id]) }}">Подробнее</a>
-                                                                        <input type="submit" class="btn btn-outline-danger"
+                                                                        <input type="submit"
+                                                                               class="btn btn-outline-danger"
                                                                                value="Удалить"/>
                                                                     </div>
 

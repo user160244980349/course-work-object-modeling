@@ -32,24 +32,29 @@
                                 @else
                                     <table class="table table-sm mb-0">
                                         <thead>
-                                            <tr>
-                                                <th scope="col">#</th>
-                                                <th scope="col">Сокращение</th>
-                                                <th scope="col">Полное название</th>
-                                                <th scope="col"><div class="d-flex justify-content-end">Действия</div></th>
-                                            </tr>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Сокращение</th>
+                                            <th scope="col">Полное название</th>
+                                            <th scope="col">
+                                                <div class="d-flex justify-content-end">Действия</div>
+                                            </th>
+                                        </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($metrics as $metric)
-                                                <tr>
-                                                    <th scope="row">{{ $loop->iteration }}</th>
-                                                    <td>{{ $metric->name }}</td>
-                                                    <td>{{ $metric->extended_name }}</td>
-                                                    <td><div class="col d-flex justify-content-end"><a class="btn btn-sm btn-outline-primary"
-                                                                href="{{ route('web.metrics.read', ['id' => $metric->id]) }}">Подробнее</a></div>
-                                                    </td>
-                                                </tr>
-                                            @endforeach
+                                        @foreach ($metrics as $metric)
+                                            <tr>
+                                                <th scope="row">{{ $loop->iteration }}</th>
+                                                <td>{{ $metric->name }}</td>
+                                                <td>{{ $metric->extended_name }}</td>
+                                                <td>
+                                                    <div class="col d-flex justify-content-end"><a
+                                                                class="btn btn-sm btn-outline-primary"
+                                                                href="{{ route('web.metrics.read', ['id' => $metric->id]) }}">Подробнее</a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        @endforeach
                                         </tbody>
                                     </table>
                                 @endif

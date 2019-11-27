@@ -18,9 +18,9 @@ class ConfigurePositionsWebController extends Controller
         $product = Product::find($prod_id);
         $subtree = Product::where('id', '=', $prod_id)->with('positions_recurse')->first();
 
-        $level = -1;
+        $level = 0;
         $content_list = new Collection;
-        $this->recurse_leveling($content_list, $level, $subtree);
+        $this->groupPositionsByLevel($content_list, $level, $subtree);
         $levels = $content_list->groupBy('level');
 
         return view('configure_positions/index')
@@ -31,13 +31,14 @@ class ConfigurePositionsWebController extends Controller
             ]);
     }
 
-    private function recurse_leveling(&$content_list, &$level, &$subtree) {
+    private function groupPositionsByLevel(&$content_list, &$level, &$subtree)
+    {
         $level++;
 
-        $subtree->level = $level;
-        $content_list->push($subtree);
         foreach ($subtree->positions_recurse as $position) {
-            $this->recurse_leveling($content_list, $level, $position->content_recurse);
+            $position->level = $level;
+            $content_list->push($position);
+            $this->groupPositionsByLevel($content_list, $level, $position->content_recurse);
         }
 
         $level--;

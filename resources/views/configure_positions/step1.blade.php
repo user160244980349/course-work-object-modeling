@@ -22,7 +22,8 @@
 
                         </div>
 
-                        <form role="form" method="post" action="{{ route('products.configure.positions.step1', ['prod_id' => $product->id, 'id' => $position->id]) }} ">
+                        <form role="form" method="post"
+                              action="{{ route('products.configure.positions.step1', ['prod_id' => $product->id, 'id' => $position->id]) }} ">
                             @csrf
 
                             <div class="row">
@@ -32,15 +33,18 @@
 
                                         <div class="row">
                                             <div class="col">
-                                                <label for="predicate" class="control-label">Наименование предиката</label>
+                                                <label for="predicate" class="control-label">Наименование
+                                                    предиката</label>
                                             </div>
                                         </div>
 
                                         <div class="row">
                                             <div class="col">
-                                                <select id="predicate" class="text form-control form-control-sm" name="predicate" required>
+                                                <select id="predicate" class="text form-control form-control-sm"
+                                                        name="predicate" required>
                                                     @foreach($predicates as $predicate)
-                                                        <option value="{{ $predicate->id }}">{{ $predicate->name }}, {{ $predicate->expression }}</option>
+                                                        <option value="{{ $predicate->id }}">{{ $predicate->name }}
+                                                            , {{ $predicate->expression }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>

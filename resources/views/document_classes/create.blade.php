@@ -35,7 +35,8 @@
                                 </div>
                                 <div class="row">
                                     <div class="col">
-                                        <input id="name" type="text" class="form-control form-control-sm" name="name" value="Новый классификатор документов" required
+                                        <input id="name" type="text" class="form-control form-control-sm" name="name"
+                                               value="Новый классификатор документов" required
                                                autofocus/>
                                     </div>
                                 </div>

@@ -3,16 +3,9 @@
 namespace App\Http\Controllers\BuildVariants;
 
 use App\Http\Controllers\Controller;
-use App\Models\Classes\DocumentClass;
-use App\Models\Classes\ParameterClass;
-use App\Models\Entities\ConfigureParameter;
-use App\Models\Entities\Metric;
-use App\Models\Entities\Predicate;
 use App\Models\Entities\Product;
-use App\Models\ParameterValues\ConfigureString;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
-use App\Models\Entities\Document;
 use Illuminate\Support\Facades\Session;
 
 class BuildVariantsController extends Controller
@@ -37,7 +30,7 @@ class BuildVariantsController extends Controller
 
         $level = -1;
         $content_list = new Collection;
-        $this->leveling_with_calculations(
+        $this->groupProductsByLevel(
             $content_list,
             $level,
             $subtree,
@@ -53,12 +46,13 @@ class BuildVariantsController extends Controller
         return redirect()->route('web.build.results');
     }
 
-    private function leveling_with_calculations(&$content_list,
-                                                &$level,
-                                                &$subtree,
-                                                $count,
-                                                $rootId,
-                                                $actuals) {
+    private function groupProductsByLevel(&$content_list,
+                                          &$level,
+                                          &$subtree,
+                                          $count,
+                                          $rootId,
+                                          $actuals)
+    {
 
         $level++;
 
@@ -79,11 +73,12 @@ class BuildVariantsController extends Controller
                 foreach ($formals as $formal) {
                     $predicate->replaceWith(
                         $formal->name,
-                        $formal->value->id == $actuals[$formal->parameter->id] ? 1 : 0);
+                        $formal->value->id == $actuals[$formal->parameter->id] ? 1 : 0
+                    );
                 }
 
                 if (intval($predicate->calculate()) > 0) {
-                    $this->leveling_with_calculations(
+                    $this->groupProductsByLevel(
                         $content_list,
                         $level,
                         $position->content_recurse,
@@ -95,7 +90,7 @@ class BuildVariantsController extends Controller
                 continue;
             }
 
-            $this->leveling_with_calculations($content_list,
+            $this->groupProductsByLevel($content_list,
                 $level,
                 $position->content_recurse,
                 $position->valuable->value,

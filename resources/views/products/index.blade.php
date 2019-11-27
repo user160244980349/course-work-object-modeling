@@ -34,24 +34,27 @@
                                 @else
                                     <table class="table table-sm mb-0">
                                         <thead>
-                                            <tr>
-                                                <th scope="col">#</th>
-                                                <th scope="col">Название</th>
-                                                <th scope="col"><div class="d-flex justify-content-end">Действия</div></th>
-                                            </tr>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Название</th>
+                                            <th scope="col">
+                                                <div class="d-flex justify-content-end">Действия</div>
+                                            </th>
+                                        </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($products as $product)
-                                                <tr>
-                                                    <th scope="row">{{ $loop->iteration }}</th>
-                                                    <td>{{ $product->name }}</td>
-                                                    <td>
-                                                        <div class="d-flex justify-content-end">
-                                                            <a class="btn btn-sm btn-outline-primary" href="{{ route('web.products.read', ['id' => $product->id]) }}">Подробнее</a>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            @endforeach
+                                        @foreach ($products as $product)
+                                            <tr>
+                                                <th scope="row">{{ $loop->iteration }}</th>
+                                                <td>{{ $product->name }}</td>
+                                                <td>
+                                                    <div class="d-flex justify-content-end">
+                                                        <a class="btn btn-sm btn-outline-primary"
+                                                           href="{{ route('web.products.read', ['id' => $product->id]) }}">Подробнее</a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        @endforeach
                                         </tbody>
                                     </table>
                                 @endif

@@ -27,40 +27,41 @@
                         <div class="row">
                             <div class="col">
 
-                            <form role="form" method="post" action="{{ route('parameter_classes.create') }}">
-                                @csrf
+                                <form role="form" method="post" action="{{ route('parameter_classes.create') }}">
+                                    @csrf
 
-                                <div class="form-group">
+                                    <div class="form-group">
+
+                                        <div class="row">
+                                            <div class="col">
+                                                <label for="class" class="control-label">Название классификатора</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col">
+                                                <input id="name" type="text" class="form-control form-control-sm"
+                                                       name="name" value="Новый классификатор параметров" required
+                                                       autofocus/>
+                                            </div>
+                                        </div>
+
+                                    </div>
 
                                     <div class="row">
                                         <div class="col">
-                                            <label for="class" class="control-label">Название классификатора</label>
+                                            <input type="submit" class="btn btn-sm btn-primary" value="Создать"/>
                                         </div>
                                     </div>
 
-                                    <div class="row">
-                                        <div class="col">
-                                            <input id="name" type="text" class="form-control form-control-sm" name="name" value="Новый классификатор параметров" required
-                                               autofocus/>
-                                        </div>
-                                    </div>
+                                </form>
 
-                                </div>
-
-                                <div class="row">
-                                    <div class="col">
-                                        <input type="submit" class="btn btn-sm btn-primary" value="Создать"/>
-                                    </div>
-                                </div>
-
-                            </form>
+                            </div>
 
                         </div>
-
                     </div>
-                </div>
 
+                </div>
             </div>
         </div>
-    </div>
 @endsection

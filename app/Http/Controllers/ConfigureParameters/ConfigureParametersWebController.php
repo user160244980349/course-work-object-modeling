@@ -3,10 +3,8 @@
 namespace App\Http\Controllers\ConfigureParameters;
 
 use App\Http\Controllers\Controller;
-use App\Models\Classes\DocumentClass;
 use App\Models\Classes\ParameterClass;
 use App\Models\Entities\ConfigureParameter;
-use App\Models\Entities\Document;
 use App\Models\Entities\Metric;
 use App\Models\Entities\Product;
 

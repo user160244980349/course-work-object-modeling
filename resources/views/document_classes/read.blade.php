@@ -16,7 +16,8 @@
 
                             <div class="col d-flex justify-content-end">
                                 <div class="btn-group-sm">
-                                    <a class="btn btn-primary" href="{{ route('web.document_classes.index') }}">Назад</a>
+                                    <a class="btn btn-primary"
+                                       href="{{ route('web.document_classes.index') }}">Назад</a>
                                     <a class="btn btn-primary" href="{{ route('home') }}">На главную</a>
                                 </div>
                             </div>
@@ -34,7 +35,8 @@
                                     </div>
                                     <div class="row">
                                         <div class="col">
-                                            <input id="name" type="text" class="form-control form-control-sm" name="name"
+                                            <input id="name" type="text" class="form-control form-control-sm"
+                                                   name="name"
                                                    value="{{ $class->name }}" disabled/>
                                         </div>
                                     </div>
