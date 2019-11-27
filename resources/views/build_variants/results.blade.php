@@ -29,7 +29,7 @@
                                 <table class="table table-sm mb-0">
                                     <tbody>
                                     <tr>
-                                        <th scope="row" colspan="3">Изделие</th>
+                                        <th scope="row" colspan="4">Изделие</th>
                                         <th scope="row" colspan="1">
                                             <div class="d-flex justify-content-end">
                                                 {{ $product->name }}
@@ -38,17 +38,18 @@
                                     </tr>
                                     @if (!isset($levels[1]))
                                         <tr>
-                                            <td scope="row" colspan="4"><i class="d-flex justify-content-center">Состав
+                                            <td scope="row" colspan="5"><i class="d-flex justify-content-center">Состав
                                                     изделия пуст</i></td>
                                         </tr>
                                     @endif
                                     @foreach ($levels as $level)
                                         <tr>
-                                            <th scope="row" colspan="4">Уровень {{ $loop->iteration }}</th>
+                                            <th scope="row" colspan="5">Уровень {{ $loop->iteration }}</th>
                                         </tr>
                                         <tr>
                                             <th scope="row">#</th>
                                             <th scope="col">Название</th>
+                                            <th scope="col">Входит в</th>
                                             <th scope="col">Количество</th>
                                             <th scope="col">Норма</th>
                                         </tr>
@@ -57,6 +58,9 @@
                                                 <th scope="row">{{ $loop->iteration }}</th>
                                                 <td>
                                                     <a href="{{ route('web.products.read', ['id' => $product_in_pos->id]) }}">{{ $product_in_pos->name }}</a>
+                                                </td>
+                                                <td>
+                                                    {{ $product_in_pos->parent }}
                                                 </td>
                                                 <td>
                                                     {{ $product_in_pos->count }}

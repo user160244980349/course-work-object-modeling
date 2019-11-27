@@ -34,9 +34,10 @@ class BuildVariantsController extends Controller
             $content_list,
             $level,
             $subtree,
-            null,
+            1,
             $product->id,
-            $actuals
+            $actuals,
+            null
         );
         $content_list->shift();
 
@@ -52,14 +53,15 @@ class BuildVariantsController extends Controller
                                           &$subtree,
                                           $count,
                                           $rootId,
-                                          $actuals)
+                                          $actuals,
+                                          $parent)
     {
 
         $level++;
-
+        $subtree->parent = $parent;
         $subtree->count = $count;
         $subtree->level = $level;
-        $content_list->push($subtree);
+        $content_list->push(clone $subtree);
 
         foreach ($subtree->positions_recurse as $position) {
 
@@ -83,9 +85,10 @@ class BuildVariantsController extends Controller
                         $content_list,
                         $level,
                         $position->content_recurse,
-                        $position->valuable->value,
+                        $position->valuable->value * $subtree->count,
                         $rootId,
-                        $actuals
+                        $actuals,
+                        $subtree->name
                     );
                 }
                 continue;
@@ -94,9 +97,10 @@ class BuildVariantsController extends Controller
             $this->groupProductsByLevel($content_list,
                 $level,
                 $position->content_recurse,
-                $position->valuable->value,
+                $position->valuable->value * $subtree->count,
                 $rootId,
-                $actuals
+                $actuals,
+                $subtree->name
             );
         }
 

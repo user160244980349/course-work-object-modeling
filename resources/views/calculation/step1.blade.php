@@ -39,8 +39,7 @@
                                         <div class="row">
                                             <div class="col">
                                                 <select id="class" type="select" class="form-control form-control-sm"
-                                                        name="class"
-                                                        required>
+                                                        name="class" required>
                                                     @foreach ($classes as $class)
                                                         <option
                                                                 value="{{ $class->id }}">{{ $class->name }}</option>
@@ -52,7 +51,7 @@
 
                                     <div class="row">
                                         <div class="col">
-                                            <input type="submit" class="btn btn-sm btn-primary" value="Создать"/>
+                                            <input type="submit" class="btn btn-sm btn-primary" value="Пронормировать"/>
                                         </div>
                                     </div>
 

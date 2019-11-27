@@ -20,7 +20,7 @@ class ConfigurePositionsWebController extends Controller
 
         $level = 0;
         $content_list = new Collection;
-        $this->groupPositionsByLevel($content_list, $level, $subtree);
+        $this->groupPositionsByLevel($content_list, $level, $subtree, 1);
         $levels = $content_list->groupBy('level');
 
         return view('configure_positions/index')
@@ -31,14 +31,16 @@ class ConfigurePositionsWebController extends Controller
             ]);
     }
 
-    private function groupPositionsByLevel(&$content_list, &$level, &$subtree)
+    private function groupPositionsByLevel(&$content_list, &$level, &$subtree, $calculated_count)
     {
         $level++;
 
         foreach ($subtree->positions_recurse as $position) {
             $position->level = $level;
-            $content_list->push($position);
-            $this->groupPositionsByLevel($content_list, $level, $position->content_recurse);
+            $position->calculated_count = $calculated_count * $position->valuable->value;
+            $position->parent = $subtree->name;
+            $content_list->push(clone $position);
+            $this->groupPositionsByLevel($content_list, $level, $position->content_recurse, $position->calculated_count);
         }
 
         $level--;
