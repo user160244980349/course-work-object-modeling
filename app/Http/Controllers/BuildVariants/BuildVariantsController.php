@@ -38,6 +38,7 @@ class BuildVariantsController extends Controller
             $product->id,
             $actuals
         );
+        $content_list->shift();
 
         $levels = $content_list->groupBy('level');
 

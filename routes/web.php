@@ -198,6 +198,15 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('step1', 'BuildVariants\BuildVariantsController@step1')->name('build.step1');
         Route::post('step2', 'BuildVariants\BuildVariantsController@step2')->name('build.step2');
 
+        Route::group(['prefix' => 'calculate'], function () {
+
+            Route::get('step1', 'Calculates\CalculatesWebController@step1')->name('web.build.calculate.step1');
+            Route::get('results', 'Calculates\CalculatesWebController@results')->name('web.build.calculate.results');
+
+            Route::post('results', 'Calculates\CalculatesController@results')->name('build.calculate.results');
+
+        });
+
     });
 
 });

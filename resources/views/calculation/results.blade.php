@@ -16,7 +16,7 @@
 
                             <div class="col d-flex justify-content-end">
                                 <div class="btn-group-sm">
-                                    <a class="btn btn-primary" href="{{ route('web.build.calculate.step1') }}">Пронормировать по классу</a>
+                                    <a class="btn btn-primary" href="">Пронормировать по классу</a>
                                     <a class="btn btn-primary" href="{{ route('home') }}">На главную</a>
                                 </div>
                             </div>
@@ -43,8 +43,9 @@
                                         </tr>
                                     @endif
                                     @foreach ($levels as $level)
+                                        @continue($loop->first)
                                         <tr>
-                                            <th scope="row" colspan="4">Уровень {{ $loop->iteration }}</th>
+                                            <th scope="row" colspan="4">Уровень {{ $loop->index }}</th>
                                         </tr>
                                         <tr>
                                             <th scope="row">#</th>
