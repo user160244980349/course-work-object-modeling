@@ -30,7 +30,7 @@
                                 <table class="table table-sm mb-0">
                                     <tbody>
                                     <tr>
-                                        <th scope="row" colspan="4">Изделие</th>
+                                        <th scope="row" colspan="5">Изделие</th>
                                         <th scope="row" colspan="1">
                                             <div class="d-flex justify-content-end">
                                                 {{ $product->name }}
@@ -39,11 +39,12 @@
                                     </tr>
                                     @foreach ($levels as $level)
                                         <tr>
-                                            <th scope="row" colspan="5">Уровень {{ $loop->iteration }}</th>
+                                            <th scope="row" colspan="6">Уровень {{ $loop->iteration }}</th>
                                         </tr>
                                         <tr>
                                             <th scope="col">#</th>
                                             <th scope="col">Название</th>
+                                            <th scope="col">Входит в</th>
                                             <th scope="col">Количество</th>
                                             <th scope="col">Метрика</th>
                                             <th scope="col">
@@ -57,7 +58,10 @@
                                                         <a href="{{ route('web.products.read', ['id' => $content_position->content_recurse->id]) }}">{{ $content_position->content_recurse->name }}</a>
                                                     </td>
                                                     <td>
-                                                        {{ $content_position->valuable->value }}
+                                                        {{ $content_position->parent }}
+                                                    </td>
+                                                    <td>
+                                                        {{ $content_position->calculated_count }}
                                                     </td>
                                                     <td>
                                                         {{ $content_position->content_recurse->metric->name }}
@@ -69,6 +73,7 @@
                                                                       method="post">
                                                                     @csrf
                                                                     @method('delete')
+
                                                                     <div class="btn-group-sm">
                                                                         <a class="btn btn-sm btn-outline-primary"
                                                                            href="{{ route('web.products.configure.positions.read', ['prod_id' => $product->id, 'id' => $content_position->id]) }}">Подробнее</a>
