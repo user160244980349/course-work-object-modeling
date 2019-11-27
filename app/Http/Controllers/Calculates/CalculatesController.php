@@ -19,7 +19,6 @@ class CalculatesController extends Controller
         $levels = Session::get('levels');
         $flat_levels = $levels->flatten();
         $normalized = $flat_levels->filter(function ($value, $key) use ($class) {
-            $value->id = $key;
             return $value->product_class->inheritedFrom($class);
         })->groupBy('name');
 
