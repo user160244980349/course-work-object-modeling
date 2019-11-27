@@ -18,10 +18,11 @@ class CalculatesWebController extends Controller
 
     public function results(Request $request)
     {
-        return view('calculation/result')
+        return view('calculation/results')
             ->with([
-                'class' => Session::get('class'),
-                'levels' => Session::get('levels'),
+                'class' => Session::get('normalization_class'),
+                'levels' => Session::get('normalized_levels'),
+                'product' => Session::get('product'),
             ]);
     }
 
