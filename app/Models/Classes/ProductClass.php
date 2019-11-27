@@ -18,9 +18,26 @@ class ProductClass extends Model
         return $this->belongsTo('App\Models\Classes\ProductClass', 'parent_id');
     }
 
+    public function parent_class_recursive()
+    {
+        return $this->belongsTo('App\Models\Classes\ProductClass', 'parent_id')->with('parent_class_recursive');
+    }
+
     public function child_class()
     {
         return $this->hasOne('App\Models\Classes\ProductClass', 'parent_id');
+    }
+
+    public function inheritedFrom($class)
+    {
+        $var = $this;
+
+        while ($var != null) {
+            if ($var->name == $class->name) return true;
+            $var = $var->parent_class_recursive;
+        }
+
+        return false;
     }
 
 }
