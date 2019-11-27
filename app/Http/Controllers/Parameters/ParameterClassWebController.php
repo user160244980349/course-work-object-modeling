@@ -16,7 +16,8 @@ class ParameterClassWebController extends Controller
 
     public function create()
     {
-        return view('parameter_classes/create');
+        return view('parameter_classes/create')
+            ->with(['classes' => ParameterClass::where('name', '<>', 'Конфигурационный')->get()]);
     }
 
     public function read($id)

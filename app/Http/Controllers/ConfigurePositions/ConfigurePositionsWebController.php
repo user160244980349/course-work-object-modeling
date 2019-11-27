@@ -59,9 +59,17 @@ class ConfigurePositionsWebController extends Controller
 
     public function step1($prod_id, $pos_id)
     {
+        $predicates = Predicate::all();
+        if ($predicates->isEmpty()) {
+            return view('error')
+                ->with([
+                    'error_text' => 'Не определены предикаты',
+                ]);
+        }
+
         return view('configure_positions/step1')
             ->with([
-                'predicates' => Predicate::all(),
+                'predicates' => $predicates,
                 'product' => Product::find($prod_id),
                 'position' => ProductPosition::find($pos_id),
             ]);
@@ -69,17 +77,33 @@ class ConfigurePositionsWebController extends Controller
 
     public function step2($prod_id, $pos_id)
     {
+        $product = Product::find($prod_id);
+        if ($product->conf_params->isEmpty()) {
+            return view('error')
+                ->with([
+                    'error_text' => 'Не определены значения для параметров конфигурирования',
+                ]);
+        }
+
         return view('configure_positions/step2')
             ->with([
                 'predicate' => Session::get('predicate'),
                 'parameters' => Session::get('parameter_models'),
-                'product' => Product::find($prod_id),
+                'product' => $product,
                 'position' => ProductPosition::find($pos_id),
             ]);
     }
 
     public function step3($prod_id, $pos_id)
     {
+        $product = Product::find($prod_id);
+        if ($product->conf_strings->isEmpty()) {
+            return view('error')
+                ->with([
+                    'error_text' => 'Не определены значения для конфигурирования',
+                ]);
+        }
+
         return view('configure_positions/step3')
             ->with([
                 'predicate' => Session::get('predicate'),

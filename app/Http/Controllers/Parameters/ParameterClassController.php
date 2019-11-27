@@ -11,9 +11,12 @@ class ParameterClassController extends Controller
 
     public function create(Request $request)
     {
-        ParameterClass::create([
+        $parameter_class = ParameterClass::create([
             'name' => $request->input('name'),
         ]);
+
+        $parameter_class->parent_class()->associate(ParameterClass::find($request->input('parent')));
+        $parameter_class->save();
 
         return redirect()->route('web.parameter_classes.index');
     }
@@ -43,7 +46,8 @@ class ParameterClassController extends Controller
                 'error_text' => 'Невозможно удалить базовый классификатор'
             ]);
 
-        if ($parameter_class->parameters->isNotEmpty())
+        if ($parameter_class->parameters->isNotEmpty()
+            || isset($parameter_class->child_class))
             return view('error', [
                 'error_text' => 'Невозможно удалить ресурс, пока он связан с другими ресурсами'
             ]);

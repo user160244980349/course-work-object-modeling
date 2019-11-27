@@ -13,4 +13,14 @@ class DocumentClass extends Model
         return $this->hasMany('App\Models\Entities\Document');
     }
 
+    public function parent_class()
+    {
+        return $this->belongsTo('App\Models\Classes\DocumentClass', 'parent_id');
+    }
+
+    public function child_class()
+    {
+        return $this->hasOne('App\Models\Classes\DocumentClass', 'parent_id');
+    }
+
 }

@@ -11,9 +11,12 @@ class DocumentClassController extends Controller
 
     public function create(Request $request)
     {
-        DocumentClass::create([
+        $document_class = DocumentClass::create([
             'name' => $request->input('name'),
         ]);
+
+        $document_class->parent_class()->associate(DocumentClass::find($request->input('parent')));
+        $document_class->save();
 
         return redirect()->route('web.document_classes.index');
     }
@@ -41,7 +44,8 @@ class DocumentClassController extends Controller
                 'error_text' => 'Невозможно удалить базовый классификатор'
             ]);
 
-        if ($document_class->documents->isNotEmpty())
+        if ($document_class->documents->isNotEmpty()
+            || isset($document_class->child_class))
             return view('error', [
                 'error_text' => 'Невозможно удалить ресурс, пока он связан с другими ресурсами'
             ]);

@@ -11,11 +11,14 @@ class ProductClassController extends Controller
 
     public function create(Request $request)
     {
-        ProductClass::create([
+        $product_class = ProductClass::create([
             'name' => $request->input('name'),
             'terminal_in' => $request->input('terminal_in') === 'on' ? true : false,
             'terminal_out' => $request->input('terminal_out') === 'on' ? true : false,
         ]);
+
+        $product_class->parent_class()->associate(ProductClass::find($request->input('parent')));
+        $product_class->save();
 
         return redirect()->route('web.product_classes.index');
     }
@@ -43,6 +46,7 @@ class ProductClassController extends Controller
     public function delete($id)
     {
         $product_class = ProductClass::find($id);
+
         if ($product_class->name == 'Материал'
             || $product_class->name == 'Сборочная единица'
             || $product_class->name == 'Стандартное изделие'
@@ -51,7 +55,8 @@ class ProductClassController extends Controller
                 'error_text' => 'Невозможно удалить базовый классификатор'
             ]);
 
-        if (ProductClass::find($id)->products->isNotEmpty())
+        if ($product_class->products->isNotEmpty()
+            || isset($product_class->child_class))
             return view('error', [
                 'error_text' => 'Невозможно удалить ресурс, пока он связан с другими ресурсами'
             ]);

@@ -16,7 +16,8 @@ class DocumentClassWebController extends Controller
 
     public function create()
     {
-        return view('document_classes/create');
+        return view('document_classes/create')
+            ->with(['classes' => DocumentClass::all()]);
     }
 
     public function read($id)

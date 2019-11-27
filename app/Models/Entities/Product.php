@@ -33,6 +33,11 @@ class Product extends Model
         return $this->hasMany('App\Models\Entities\ConfigureParameter');
     }
 
+    public function conf_strings()
+    {
+        return $this->hasManyThrough('App\Models\ParameterValues\ConfigureString', 'App\Models\Entities\ConfigureParameter');
+    }
+
     public function metric()
     {
         return $this->belongsTo('App\Models\Entities\Metric');

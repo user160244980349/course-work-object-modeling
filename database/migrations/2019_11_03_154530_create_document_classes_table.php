@@ -17,6 +17,7 @@ class CreateDocumentClassesTable extends Migration
 
             // Indices
             $table->bigIncrements('id');
+            $table->bigInteger('parent_id')->nullable();
 
             // Values
             $table->string('name');

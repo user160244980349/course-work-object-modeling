@@ -29,9 +29,7 @@ class ConfigurePositionsController extends Controller
         $predicate_inst->position()->associate($position);
         $predicate_inst->predicate()->associate($predicate);
 
-
         $names = $predicate->parameter_names();
-
 
         $parameter_models = new Collection;
 
