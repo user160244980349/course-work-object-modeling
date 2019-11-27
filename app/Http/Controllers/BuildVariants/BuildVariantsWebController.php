@@ -19,6 +19,16 @@ class BuildVariantsWebController extends Controller
 
     public function step2()
     {
+        $product = Session::get('product');
+
+        if ($product->conf_params->isNotEmpty()
+            && $product->conf_strings->isEmpty()) {
+            return view('error')
+                ->with([
+                    'error_text' => 'Не определены значения для параметров конфигурирования',
+                ]);
+        }
+
         return view('build_variants/step2')
             ->with([
                 'product' => Session::get('product'),

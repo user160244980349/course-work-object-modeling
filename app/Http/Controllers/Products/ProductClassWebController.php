@@ -16,7 +16,8 @@ class ProductClassWebController extends Controller
 
     public function create()
     {
-        return view('product_classes/create');
+        return view('product_classes/create')
+            ->with(['classes' => ProductClass::all()]);
     }
 
     public function read($id)

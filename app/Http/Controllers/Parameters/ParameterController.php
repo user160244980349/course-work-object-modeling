@@ -25,7 +25,7 @@ class ParameterController extends Controller
     {
         $owner = $owner_class::find($id);
         $type = ValueType::find($request->input('type'));
-        $class = ParameterClass::find(1);
+        $class = ParameterClass::find($request->input('class'));
         $metric = Metric::find($request->input('metric'));
 
         $parameter = new Parameter([

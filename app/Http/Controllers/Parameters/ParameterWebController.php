@@ -17,6 +17,7 @@ class ParameterWebController extends Controller
     {
         return view('parameters_for_docs/create')
             ->with(['product' => Product::find($prod_id)])
+            ->with(['classes' => ParameterClass::where('name', '<>', 'Конфигурационный')->get()])
             ->with(['document' => Document::find($doc_id)])
             ->with(['class' => ParameterClass::find(1)])
             ->with(['metrics' => Metric::all()])
@@ -27,6 +28,7 @@ class ParameterWebController extends Controller
     {
         return view('parameters_for_docs/read')
             ->with(['product' => Product::find($prod_id)])
+            ->with(['classes' => ParameterClass::where('name', '<>', 'Конфигурационный')->get()])
             ->with(['document' => Document::find($doc_id)])
             ->with(['parameter' => Parameter::find($id)]);
     }
@@ -35,6 +37,7 @@ class ParameterWebController extends Controller
     {
         return view('parameters_for_docs/update')
             ->with(['product' => Product::find($prod_id)])
+            ->with(['classes' => ParameterClass::where('name', '<>', 'Конфигурационный')->get()])
             ->with(['document' => Document::find($doc_id)])
             ->with(['parameter' => Parameter::find($id)]);
     }
@@ -43,6 +46,7 @@ class ParameterWebController extends Controller
     {
         return view('parameters_for_prods/create')
             ->with(['product' => Product::find($prod_id)])
+            ->with(['classes' => ParameterClass::where('name', '<>', 'Конфигурационный')->get()])
             ->with(['types' => ValueType::all()])
             ->with(['metrics' => Metric::all()])
             ->with(['class' => ParameterClass::find(1)]);
@@ -52,6 +56,7 @@ class ParameterWebController extends Controller
     {
         return view('parameters_for_prods/read')
             ->with(['product' => Product::find($prod_id)])
+            ->with(['classes' => ParameterClass::where('name', '<>', 'Конфигурационный')->get()])
             ->with(['parameter' => Parameter::find($id)]);
     }
 
@@ -59,6 +64,7 @@ class ParameterWebController extends Controller
     {
         return view('parameters_for_prods/update')
             ->with(['product' => Product::find($prod_id)])
+            ->with(['classes' => ParameterClass::where('name', '<>', 'Конфигурационный')->get()])
             ->with(['parameter' => Parameter::find($id)]);
     }
 

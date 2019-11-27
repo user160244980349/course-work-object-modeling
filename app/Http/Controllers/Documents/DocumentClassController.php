@@ -11,16 +11,25 @@ class DocumentClassController extends Controller
 
     public function create(Request $request)
     {
-        DocumentClass::create([
+        $document_class = DocumentClass::create([
             'name' => $request->input('name'),
         ]);
+
+        $document_class->parent_class()->associate(DocumentClass::find($request->input('parent')));
+        $document_class->save();
 
         return redirect()->route('web.document_classes.index');
     }
 
     public function update(Request $request, $id)
     {
-        DocumentClass::find($id)->update([
+        $document_class = DocumentClass::find($id);
+        if ($document_class->name == 'Документация')
+            return view('error', [
+                'error_text' => 'Невозможно изменить базовый классификатор'
+            ]);
+
+        $document_class->update([
             'name' => $request->input('name'),
         ]);
 
@@ -29,11 +38,19 @@ class DocumentClassController extends Controller
 
     public function delete($id)
     {
-        if (DocumentClass::find($id)->documents->isNotEmpty())
+        $document_class = DocumentClass::find($id);
+        if ($document_class->name == 'Документация')
+            return view('error', [
+                'error_text' => 'Невозможно удалить базовый классификатор'
+            ]);
+
+        if ($document_class->documents->isNotEmpty()
+            || isset($document_class->child_class))
             return view('error', [
                 'error_text' => 'Невозможно удалить ресурс, пока он связан с другими ресурсами'
             ]);
-        DocumentClass::find($id)->delete();
+
+        $document_class->delete();
 
         return redirect()->route('web.document_classes.index');
     }

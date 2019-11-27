@@ -16,6 +16,7 @@
 
                             <div class="col d-flex justify-content-end">
                                 <div class="btn-group-sm">
+                                    <a class="btn btn-primary" href="">Пронормировать по классу</a>
                                     <a class="btn btn-primary" href="{{ route('home') }}">На главную</a>
                                 </div>
                             </div>

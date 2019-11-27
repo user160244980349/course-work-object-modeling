@@ -25,6 +25,26 @@
                         <form role="form" method="post" action="{{ route('product_classes.create') }}">
                             @csrf
 
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col">
+                                        <label for="parent" class="control-label">Родительский классификатор</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <select id="parent" type="select" class="form-control form-control-sm"
+                                                name="parent"
+                                                required>
+                                            @foreach ($classes as $class)
+                                                <option
+                                                        value="{{ $class->id }}">{{ $class->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="row">
                                 <div class="col">
 

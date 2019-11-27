@@ -25,27 +25,33 @@
                         <form role="form" method="post" action="{{ route('build.step2') }}">
                             @csrf
 
-                            @foreach($product->conf_params as $parameter)
-                                <div class="form-group">
-                                    <div class="row">
-                                        <div class="col">
-                                            <label for="parameters{{ $loop->iteration }}"
-                                                   class="control-label">{{ $parameter->name }}</label>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col">
-                                            <select class="form-control form-control-sm"
-                                                    name="parameters[{{ $parameter->id }}]"
-                                                    id="parameters{{ $loop->iteration }}">
-                                                @foreach($parameter->strings as $value)
-                                                    <option value="{{ $value->id }}">{{ $value->value }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
+                            @if($product->conf_params->isEmpty())
+                                <div class="d-flex justify-content-center">
+                                    <i>Список параметров пуст</i>
                                 </div>
-                            @endforeach
+                            @else
+                                @foreach($product->conf_params as $parameter)
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col">
+                                                <label for="parameters{{ $loop->iteration }}"
+                                                       class="control-label">{{ $parameter->name }}</label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <select class="form-control form-control-sm"
+                                                        name="parameters[{{ $parameter->id }}]"
+                                                        id="parameters{{ $loop->iteration }}">
+                                                    @foreach($parameter->strings as $value)
+                                                        <option value="{{ $value->id }}">{{ $value->value }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            @endif
 
                             <div class="row">
                                 <div class="col">
@@ -54,7 +60,6 @@
                             </div>
 
                         </form>
-
                     </div>
                 </div>
 

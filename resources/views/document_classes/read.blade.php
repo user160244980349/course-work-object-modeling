@@ -27,6 +27,26 @@
                         <div class="row align-items-center">
                             <div class="col">
 
+                                @if(isset($class->parent_class))
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col">
+                                            <label for="parent" class="control-label">Родительский классификатор</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <select id="parent" type="select" class="form-control form-control-sm"
+                                                    name="parent"
+                                                    disabled>
+                                                    <option
+                                                            value="{{ $class->parent_class->id }}">{{ $class->parent_class->name }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                @endif
+
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col">
