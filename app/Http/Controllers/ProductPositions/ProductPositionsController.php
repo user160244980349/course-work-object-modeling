@@ -44,6 +44,12 @@ class ProductPositionsController extends Controller
     {
         $position = Product::find($prod_id)->positions()->find($id);
 
+        if (isset($position->predicate_instance)) {
+            return view('error', [
+                'error_text' => 'Невозможно удалить ресурс, пока он связан с другими ресурсами'
+            ]);
+        }
+
         $position->valuable()->delete();
         $position->delete();
 

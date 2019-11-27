@@ -8,6 +8,7 @@ use App\Models\Entities\Metric;
 use App\Models\Entities\Product;
 use App\Models\Entities\ValueType;
 use Illuminate\Http\Request;
+use function foo\func;
 
 class ProductController extends Controller
 {
@@ -57,8 +58,32 @@ class ProductController extends Controller
             $item->valuable()->delete();
         });
         $product->parameters()->delete();
+
+        $product->conf_params()->each(function ($p) {
+            $p->strings()->delete();
+        });
+        $product->conf_params()->delete();
+
+        $product->documents()->each(function ($p) {
+            $p->parameters()->each(function ($p) {
+               $p->valuable()->delete();
+            });
+            $p->parameters()->delete();
+        });
         $product->documents()->delete();
+
+        $product->positions()->each(function ($p) {
+            $p->predicate_instances()->each(function ($p) {
+                $p->formal_parameters()->each(function ($p) {
+                    $p->strings()->delete();
+                });
+                $p->formal_parameters()->delete();
+            });
+            $p->predicate_instances()->delete();
+            $p->valuable()->delete();
+        });
         $product->positions()->delete();
+
         $product->delete();
 
         return redirect()->route('web.products.index');

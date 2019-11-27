@@ -32,7 +32,8 @@ class MetricController extends Controller
     public function delete($id)
     {
 
-        if (Metric::find($id)->products->isNotEmpty() || Metric::find($id)->parameters->isNotEmpty())
+        if (Metric::find($id)->products->isNotEmpty()
+            || Metric::find($id)->parameters->isNotEmpty())
             return view('error', [
                 'error_text' => 'Невозможно удалить ресурс, пока он связан с другими ресурсами'
             ]);
