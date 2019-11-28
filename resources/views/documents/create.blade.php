@@ -8,7 +8,7 @@
                 <div class="card">
                     <div class="card-body">
 
-                        <div class="row">
+                        <div class="row card-title">
 
                             <div class="col">
                                 <b>Создание документа</b>

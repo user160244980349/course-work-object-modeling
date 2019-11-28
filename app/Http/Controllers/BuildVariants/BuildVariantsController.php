@@ -42,6 +42,7 @@ class BuildVariantsController extends Controller
         $content_list->shift();
 
         $levels = $content_list->groupBy('level');
+
         Session::put('levels', $levels);
 
         return redirect()->route('web.build.results');
